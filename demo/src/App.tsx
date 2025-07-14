@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { ProjectCard } from '@asafarim/project-card';
 import { DisplayCode } from '@asafarim/display-code';
 import type { ProjectCardProps } from '@asafarim/project-card';
+import { PackageLinks } from '@asafarim/shared';
 
 const sampleProjects: ProjectCardProps[] = [
   {
@@ -91,6 +92,7 @@ function App() {
       <div className="demo-header">
         <h1>@asafarim/project-card</h1>
         <p>A powerful and flexible React component for displaying project cards</p>
+        <PackageLinks packageName="@asafarim/project-card" githubPath="project-card" demoPath="project-card" />
         
         <div className="theme-toggle">
           <button onClick={toggleTheme}>

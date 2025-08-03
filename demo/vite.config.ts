@@ -4,7 +4,7 @@ import path, { resolve } from 'path'
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => {
-  
+
   return {
     plugins: [react()],
     base: '/project-card/',  // Match the repository name for GitHub Pages
@@ -18,8 +18,7 @@ export default defineConfig(({ mode }) => {
     },
     resolve: {
       alias: {
-        '@': resolve(__dirname, './src'),
-        '@asafarim/project-card': resolve(__dirname, '../src')
+        '@': resolve(__dirname, './src')
       }
     },
   };

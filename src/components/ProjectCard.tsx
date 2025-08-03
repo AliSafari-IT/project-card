@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { ProjectCardProps } from '../types';
 import styles from './ProjectCard.module.css';
 
@@ -20,6 +20,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
   status = 'active'
 }) => {
   const isDark = currentTheme === 'dark';
+  const [showTSIcon, setShowTSIcon] = React.useState(showTechStackIcons);
 
   const truncatedDescription = maxDescriptionLength && description.length > maxDescriptionLength
     ? `${description.substring(0, maxDescriptionLength)}...`
@@ -107,6 +108,10 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
     );
   }
 
+  useEffect(() => {
+    setShowTSIcon(showTechStackIcons);
+  }, [showTechStackIcons]);
+
   return (
     <div className={cardClasses} onClick={onCardClick}>
       {status && (
@@ -150,7 +155,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
             className={`${styles.techTag} ${isDark ? styles.techTagDark : ''}`}
             style={{ backgroundColor: tech.color }}
           >
-            {showTechStackIcons && tech.icon && (
+            {showTSIcon && tech.icon && (
               <span className={styles.techIcon}>{tech.icon}</span>
             )}
             {tech.name}

@@ -112,6 +112,24 @@ function App() {
       </div>
 
       <div className="demo-section">
+        <h2>🛠️ Getting Started</h2>
+        <p>First, install the package using your preferred package manager:</p>
+        <DisplayCode
+          code={`npm install @asafarim/project-card
+
+# or with yarn
+yarn add @asafarim/project-card
+
+# or with pnpm  
+pnpm add @asafarim/project-card`}
+          language="bash"
+          theme={theme}
+          title="Installation"
+          showCopyButton={true}
+        />
+      </div>
+
+      <div className="demo-section">
         <h2>🚀 Features</h2>
         <div className="features-list">
           <div className="feature-item">

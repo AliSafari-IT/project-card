@@ -42,9 +42,6 @@ importers:
       '@asafarim/display-code':
         specifier: ^1.0.1
         version: 1.0.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@asafarim/project-card':
-        specifier: file:..
-        version: file:(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@asafarim/shared':
         specifier: ^1.0.3
         version: 1.0.3(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -82,12 +79,6 @@ packages:
 
   '@asafarim/display-code@1.0.1':
     resolution: {integrity: sha512-HX+Q9x1x6iC6U+YPNCfQZ7mSsDeQOlvUX2RXH6YxcpM+qWIiQvntehBETOmI9730GmEa/PpLPfQl2ISxiAdjpQ==}
-    peerDependencies:
-      react: ^17.0.0 || ^18.0.0
-      react-dom: ^17.0.0 || ^18.0.0
-
-  '@asafarim/project-card@file:':
-    resolution: {directory: '', type: directory}
     peerDependencies:
       react: ^17.0.0 || ^18.0.0
       react-dom: ^17.0.0 || ^18.0.0
@@ -1213,11 +1204,6 @@ snapshots:
       '@jridgewell/trace-mapping': 0.3.29
 
   '@asafarim/display-code@1.0.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
-    dependencies:
-      react: 18.3.1
-      react-dom: 18.3.1(react@18.3.1)
-
-  '@asafarim/project-card@file:(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
       react: 18.3.1
       react-dom: 18.3.1(react@18.3.1)

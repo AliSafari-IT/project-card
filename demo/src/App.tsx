@@ -82,6 +82,18 @@ const sampleProjects: ProjectCardProps[] = [
     status: 'archived',
     featured: false,
     lastUpdated: '2023-12-01'
+  },
+  {
+    title: 'Project Card with no image',
+    description: 'A project card component for displaying project information',
+    techStacks: [
+      { name: 'React', color: '#61dafb', icon: '⚛️' },
+      { name: 'TypeScript', color: '#3178c6', icon: '📘' }
+    ],
+    links: [
+      { type: 'demo', url: 'https://demo.com' },
+      { type: 'repo', url: 'https://github.com/user/repo' }
+    ],
   }
 ];
 

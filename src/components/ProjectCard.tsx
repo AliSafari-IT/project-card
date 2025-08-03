@@ -110,27 +110,30 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
   return (
     <div className={cardClasses} onClick={onCardClick}>
       {status && (
-        <div className={`${styles.status} ${styles[`status${status.charAt(0).toUpperCase() + status.slice(1).replace('-', '')}${isDark ? 'Dark' : ''}`]}`}>
+        <div 
+        style={{
+          backgroundColor: status === 'active' ? 'green' : status === 'archived' ? 'red' : status === 'in-progress' ? 'yellow' : status === 'draft' ? 'gray' : status === 'completed' ? 'blue' : status === 'coming-soon' ? 'orange' : 'gray',
+          color: status === 'active' ? 'white' : status === 'archived' ? 'white' : status === 'in-progress' ? 'black' : status === 'draft' ? 'white' : status === 'completed' ? 'white' : status === 'coming-soon' ? 'white' : 'white',
+          zIndex: 1000,
+          position: 'absolute'
+        }}
+        className={`${styles.status} ${styles[`status${status.charAt(0).toUpperCase() + status.slice(1).replace('-', '')}${isDark ? 'Dark' : ''}`]}`}>
           {getStatusLabel(status)}
         </div>
       )}
 
-      <div className={styles.imageContainer}>
-        {image ? (
-          <img
-            src={typeof image === 'string' ? image : image.src}
-            alt={imageAlt || title}
-            className={styles.image}
-            loading="lazy"
-            width={typeof image === 'object' ? image.width : undefined}
-            height={typeof image === 'object' ? image.height : undefined}
-          />
-        ) : (
-          <div className={`${styles.imagePlaceholder} ${isDark ? styles.imagePlaceholderDark : ''}`}>
-            No preview available
-          </div>
-        )}
+
+      {image && (<div className={styles.imageContainer}>
+        <img
+          src={typeof image === 'string' ? image : image.src}
+          alt={imageAlt || title}
+          className={styles.image}
+          loading="lazy"
+          width={typeof image === 'object' ? image.width : undefined}
+          height={typeof image === 'object' ? image.height : undefined}
+        />
       </div>
+      )}
 
       <h3 className={`${styles.title} ${isDark ? styles.titleDark : ''}`}>
         {title}

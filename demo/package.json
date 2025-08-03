@@ -1,6 +1,7 @@
 {
   "name": "project-card-demo",
-  "version": "1.1.1",
+  "description": "A demo for the @asafarim/project-card package",
+  "version": "1.1.2",
   "private": true,
   "type": "module",
   "scripts": {

@@ -26,6 +26,12 @@ The demo showcases:
 
 ```bash
 npm install @asafarim/project-card
+
+# or with yarn
+yarn add @asafarim/project-card
+
+# or with pnpm  
+pnpm add @asafarim/project-card
 ```
 
 ## Usage

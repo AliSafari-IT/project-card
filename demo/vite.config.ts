@@ -4,7 +4,6 @@ import path, { resolve } from 'path'
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => {
-  const isProd = mode === 'production';
   
   return {
     plugins: [react()],

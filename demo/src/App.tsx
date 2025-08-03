@@ -1,11 +1,12 @@
 import { useState } from 'react';
 import { ProjectCard } from '@asafarim/project-card';
 import { DisplayCode } from '@asafarim/display-code';
-import type { ProjectCardProps } from '@asafarim/project-card';
+import type { ProjectCardProps, ProjectTag } from '@asafarim/project-card';
 import { PackageLinks } from '@asafarim/shared';
 
 const sampleProjects: ProjectCardProps[] = [
   {
+    id: '1',
     title: 'E-commerce Platform',
     description: 'A full-stack e-commerce platform with user authentication, shopping cart, and payment integration using React and Node.js. Features include product catalog, user reviews, order management, and real-time inventory tracking.',
     image: {
@@ -24,29 +25,61 @@ const sampleProjects: ProjectCardProps[] = [
     ],
     status: 'active',
     featured: true,
-    lastUpdated: '2024-01-15'
+    priority: 'High',
+    progress: 85,
+    tags: [
+      { name: 'E-commerce', onClick: () => {
+        alert('E-commerce');
+      } },
+      { name: 'Full-stack', navigateTo: 'https://ecommerce-demo2.com' },
+      { name: 'React', navigateTo: 'https://ecommerce-demo3.com' },
+      { name: 'Node.js', navigateTo: 'https://ecommerce-demo4.com' },
+      { name: 'MongoDB', navigateTo: 'https://ecommerce-demo5.com' }
+    ],
+    startDate: '2024-01-15',
+    dueDate: '2024-03-15',
+    budget: 15000,
+    isPublic: true,
+    lastUpdated: '2024-01-20'
   },
   {
-    title: 'Portfolio Website',
-    description: 'A modern portfolio website built with React and TypeScript, featuring dark mode, responsive design, and smooth animations.',
+    id: '2',
+    title: 'AI-Powered Chat Application',
+    description: 'A real-time chat application with AI-powered responses, sentiment analysis, and intelligent conversation flow management.',
     image: {
       src: 'https://picsum.photos/400/200?random=2',
-      alt: 'Portfolio Website'
+      alt: 'AI Chat Application'
     },
     techStacks: [
-      { name: 'React', color: '#61dafb', icon: '⚛️' },
-      { name: 'TypeScript', color: '#3178c6', icon: '📘' },
-      { name: 'CSS3', color: '#1572B6', icon: '🎨' }
+      { name: 'Next.js', color: '#000000', icon: '▲' },
+      { name: 'OpenAI', color: '#10a37f', icon: '🤖' },
+      { name: 'Socket.io', color: '#010101', icon: '🔌' },
+      { name: 'TypeScript', color: '#3178c6', icon: '📘' }
     ],
     links: [
-      { type: 'demo', url: 'https://portfolio-demo.com' },
-      { type: 'repo', url: 'https://github.com/user/portfolio' }
+      { type: 'demo', url: 'https://ai-chat-demo.com' },
+      { type: 'repo', url: 'https://github.com/user/ai-chat' },
+      { type: 'documentation', url: 'https://docs.ai-chat.com' }
     ],
-    status: 'active',
-    featured: false,
-    lastUpdated: '2024-01-10'
+    status: 'in-progress',
+    featured: true,
+    priority: 'High',
+    progress: 65,
+    tags: [
+      { name: 'AI' },
+      { name: 'Real-time' },
+      { name: 'Chat' },
+      { name: 'Next.js' },
+      { name: 'OpenAI' }
+    ],
+    startDate: '2024-01-10',
+    dueDate: '2024-02-28',
+    budget: 8000,
+    isPublic: true,
+    lastUpdated: '2024-01-18'
   },
   {
+    id: '3',
     title: 'Task Management App',
     description: 'A collaborative task management application with real-time updates, drag-and-drop functionality, and team collaboration features.',
     image: {
@@ -64,16 +97,63 @@ const sampleProjects: ProjectCardProps[] = [
     ],
     status: 'in-progress',
     featured: false,
-    lastUpdated: '2024-01-05'
+    priority: 'Medium',
+    progress: 45,
+    tags: [
+      { name: 'Task Management', navigateTo: 'https://task-app-demo.com' },
+      { name: 'Collaboration', navigateTo: 'https://github.com/user/task-app' },
+      { name: 'Real-time', navigateTo: 'https://task-app-demo.com' },
+      { name: 'Firebase', navigateTo: 'https://task-app-demo.com' }
+    ],
+    startDate: '2024-01-05',
+    dueDate: '2024-04-15',
+    budget: 5000,
+    isPublic: true,
+    lastUpdated: '2024-01-15'
   },
   {
+    id: '4',
+    title: 'Portfolio Website',
+    description: 'A modern portfolio website built with React and TypeScript, featuring dark mode, responsive design, and smooth animations.',
+    image: {
+      src: 'https://picsum.photos/400/200?random=4',
+      alt: 'Portfolio Website'
+    },
+    techStacks: [
+      { name: 'React', color: '#61dafb', icon: '⚛️' },
+      { name: 'TypeScript', color: '#3178c6', icon: '📘' },
+      { name: 'CSS3', color: '#1572B6', icon: '🎨' }
+    ],
+    links: [
+      { type: 'demo', url: 'https://portfolio-demo.com' },
+      { type: 'repo', url: 'https://github.com/user/portfolio' }
+    ],
+    status: 'completed',
+    featured: false,
+    priority: 'Low',
+    progress: 100,
+    tags: [
+      { name: 'Portfolio' },
+      { name: 'React' },
+      { name: 'TypeScript' },
+      { name: 'Responsive' }
+    ],
+    startDate: '2023-12-01',
+    endDate: '2024-01-10',
+    budget: 2000,
+    isPublic: true,
+    lastUpdated: '2024-01-10'
+  },
+  {
+    id: '5',
     title: 'Machine Learning Model',
-    description: 'An archived machine learning project for image classification using TensorFlow and Python.',
-    image: 'https://picsum.photos/400/200?random=4',
+    description: 'An advanced machine learning project for image classification using TensorFlow and Python with real-time inference capabilities.',
+    image: 'https://picsum.photos/400/200?random=5',
     techStacks: [
       { name: 'Python', color: '#3776ab', icon: '🐍' },
       { name: 'TensorFlow', color: '#FF6F00', icon: '🧠' },
-      { name: 'Jupyter', color: '#F37626', icon: '📊' }
+      { name: 'Jupyter', color: '#F37626', icon: '📊' },
+      { name: 'Flask', color: '#000000', icon: '🍶' }
     ],
     links: [
       { type: 'repo', url: 'https://github.com/user/ml-model' },
@@ -81,19 +161,76 @@ const sampleProjects: ProjectCardProps[] = [
     ],
     status: 'archived',
     featured: false,
+    priority: 'Medium',
+    progress: 90,
+    tags: [
+      { name: 'Machine Learning' },
+      { name: 'AI' },
+      { name: 'Python' },
+      { name: 'TensorFlow' }
+    ],
+    startDate: '2023-10-01',
+    endDate: '2023-12-01',
+    budget: 12000,
+    isPublic: false,
     lastUpdated: '2023-12-01'
   },
   {
-    title: 'Project Card with no image',
-    description: 'A project card component for displaying project information',
+    id: '6',
+    title: 'Planning: Blockchain Wallet',
+    description: 'A decentralized wallet application for managing cryptocurrencies with advanced security features and multi-chain support.',
     techStacks: [
-      { name: 'React', color: '#61dafb', icon: '⚛️' },
-      { name: 'TypeScript', color: '#3178c6', icon: '📘' }
+      { name: 'Solidity', color: '#363636', icon: '⛓️' },
+      { name: 'Web3.js', color: '#f16822', icon: '🌐' },
+      { name: 'React', color: '#61dafb', icon: '⚛️' }
     ],
     links: [
-      { type: 'demo', url: 'https://demo.com' },
-      { type: 'repo', url: 'https://github.com/user/repo' }
+      { type: 'documentation', url: 'https://docs.wallet.com' }
     ],
+    status: 'planning',
+    featured: false,
+    priority: 'High',
+    progress: 10,
+    tags: [
+      { name: 'Blockchain' },
+      { name: 'Cryptocurrency' },
+      { name: 'Web3' },
+      { name: 'Security' }
+    ],
+    startDate: '2024-02-01',
+    dueDate: '2024-06-30',
+    budget: 25000,
+    isPublic: true,
+    lastUpdated: '2024-01-25'
+  },
+  {
+    id: '7',
+    title: 'Mobile App - No Image',
+    description: 'A cross-platform mobile application built with React Native for fitness tracking and workout planning.',
+    techStacks: [
+      { name: 'React Native', color: '#61dafb', icon: '📱' },
+      { name: 'Expo', color: '#000020', icon: '⚡' },
+      { name: 'Firebase', color: '#FFCA28', icon: '🔥' }
+    ],
+    links: [
+      { type: 'demo', url: 'https://fitness-app-demo.com' },
+      { type: 'repo', url: 'https://github.com/user/fitness-app' }
+    ],
+    status: 'draft',
+    featured: false,
+    priority: 'Medium',
+    progress: 25,
+    tags: [
+      { name: 'Mobile' },
+      { name: 'Fitness' },
+      { name: 'React Native' },
+      { name: 'Cross-platform' }
+    ],
+    startDate: '2024-01-20',
+    dueDate: '2024-05-15',
+    budget: 8000,
+    isPublic: true,
+    lastUpdated: '2024-01-22'
   }
 ];
 
@@ -162,7 +299,23 @@ pnpm add @asafarim/project-card`}
           </div>
           <div className="feature-item">
             <h3>🏷️ Status Indicators</h3>
-            <p>Visual status indicators for active, archived, and in-progress projects</p>
+            <p>Visual status indicators for active, archived, in-progress, planning, and draft projects</p>
+          </div>
+          <div className="feature-item">
+            <h3>📊 Progress Tracking</h3>
+            <p>Animated progress bars showing project completion percentage</p>
+          </div>
+          <div className="feature-item">
+            <h3>🏷️ Tag System</h3>
+            <p>Display project tags with modern styling and hover effects</p>
+          </div>
+          <div className="feature-item">
+            <h3>💰 Budget & Metadata</h3>
+            <p>Show priority, budget, start/end dates, and other project details</p>
+          </div>
+          <div className="feature-item">
+            <h3>🗄️ Database Integration</h3>
+            <p>Direct support for database models with mapping utilities</p>
           </div>
           <div className="feature-item">
             <h3>⚡ Performance</h3>
@@ -200,12 +353,97 @@ pnpm add @asafarim/project-card`}
       </div>
 
       <div className="demo-section">
+        <h2>🚀 Advanced Features</h2>
+        <p>Showcase all the powerful features with comprehensive project data:</p>
+        <DisplayCode
+          code={`import { ProjectCard } from '@asafarim/project-card';
+
+<ProjectCard
+  id="1"
+  title="E-commerce Platform"
+  description="A full-stack e-commerce platform with user authentication..."
+  image={{
+    src: "https://picsum.photos/400/200?random=1",
+    alt: "E-commerce Platform"
+  }}
+  techStacks={[
+    { name: 'React', color: '#61dafb', icon: '⚛️' },
+    { name: 'Node.js', color: '#339933', icon: '🟢' },
+    { name: 'MongoDB', color: '#47A248', icon: '🍃' }
+  ]}
+  links={[
+    { type: 'demo', url: 'https://ecommerce-demo.com', label: 'Live Demo' },
+    { type: 'repo', url: 'https://github.com/user/ecommerce' }
+  ]}
+  status="active"
+  featured={true}
+  priority="High"
+  progress={85}
+  tags={['E-commerce', 'Full-stack', 'React', 'Node.js']}
+  startDate="2024-01-15"
+  dueDate="2024-03-15"
+  budget={15000}
+  isPublic={true}
+  currentTheme="light"
+  showTechStackIcons={true}
+  maxDescriptionLength={150}
+  onCardClick={() => console.log('Project clicked!')}
+/>`}
+          language="jsx"
+          theme={theme}
+          title="Advanced Usage Example"
+          showLineNumbers={true}
+          showCopyButton={true}
+        />
+      </div>
+
+      <div className="demo-section">
+        <h2>🗄️ Database Integration</h2>
+        <p>Seamlessly integrate with your database using the mapping utilities:</p>
+        <DisplayCode
+          code={`import { 
+  ProjectCard, 
+  mapProject, 
+  mapProjects, 
+  filterPublicProjects, 
+  sortProjects 
+} from '@asafarim/project-card';
+
+// Fetch data from your API
+const projects = await fetch('/api/projects').then(res => res.json());
+
+// Filter and sort projects
+const publicProjects = filterPublicProjects(projects);
+const sortedProjects = sortProjects(publicProjects);
+
+// Map to ProjectCard format
+const projectCards = mapProjects(sortedProjects);
+
+// Render the cards
+{projectCards.map((project) => (
+  <ProjectCard
+    key={project.id}
+    {...project}
+    currentTheme={theme}
+    showTechStackIcons={true}
+    onCardClick={() => handleCardClick(project.id!)}
+  />
+))}`}
+          language="jsx"
+          theme={theme}
+          title="Database Integration Example"
+          showLineNumbers={true}
+          showCopyButton={true}
+        />
+      </div>
+
+      <div className="demo-section">
         <h2>🎯 Live Examples</h2>
-        <p>Click on any card to see the onClick handler in action!</p>
+        <p>Click on any card to see the onClick handler in action! These examples showcase all the new features including progress bars, tags, metadata, and different project statuses:</p>
         <div className="demo-grid">
           {sampleProjects.map((project, index) => (
             <ProjectCard
-              key={index}
+              key={project.id || index}
               {...project}
               currentTheme={theme}
               showTechStackIcons={true}
@@ -213,6 +451,37 @@ pnpm add @asafarim/project-card`}
               onCardClick={() => handleCardClick(project.title)}
             />
           ))}
+        </div>
+      </div>
+
+      <div className="demo-section">
+        <h2>📊 Status Types</h2>
+        <p>The component supports various project statuses with different visual indicators:</p>
+        <div className="status-examples">
+          <div className="status-item">
+            <h4>🟢 Active</h4>
+            <p>Currently in development and actively maintained</p>
+          </div>
+          <div className="status-item">
+            <h4>🟡 In Progress</h4>
+            <p>Work is ongoing but not yet complete</p>
+          </div>
+          <div className="status-item">
+            <h4>🔵 Completed</h4>
+            <p>Project has been finished and deployed</p>
+          </div>
+          <div className="status-item">
+            <h4>📋 Planning</h4>
+            <p>Project is in the planning and research phase</p>
+          </div>
+          <div className="status-item">
+            <h4>📝 Draft</h4>
+            <p>Project is in early development or concept stage</p>
+          </div>
+          <div className="status-item">
+            <h4>📦 Archived</h4>
+            <p>Project is no longer active or maintained</p>
+          </div>
         </div>
       </div>
 
@@ -315,6 +584,15 @@ pnpm add @asafarim/project-card`}
             featured={true}
             showTechStackIcons={true}
             onCardClick={() => handleCardClick('Featured Project')}
+            tags={[
+              { name: 'React', navigateTo: 'https://react.com' },
+              { name: 'Next.js', navigateTo: 'https://nextjs.org' },
+              { name: 'Tailwind', navigateTo: 'https://tailwindcss.com' }
+            ]}
+            progress={85}
+            status="planning"
+            lastUpdated="2024-01-15"
+            isLoading={false}
           />
         </div>
       </div>

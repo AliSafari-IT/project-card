@@ -8,8 +8,11 @@ const sampleProjects: ProjectCardProps[] = [
   {
     title: 'E-commerce Platform',
     description: 'A full-stack e-commerce platform with user authentication, shopping cart, and payment integration using React and Node.js. Features include product catalog, user reviews, order management, and real-time inventory tracking.',
-    image: 'https://images.unsplash.com/photo-1563013544-824ae1b704d3?auto=format&fit=crop&w=400&h=200',
-    techStack: [
+    image: {
+      src: 'https://picsum.photos/400/200?random=1',
+      alt: 'E-commerce Platform'
+    },
+    techStacks: [
       { name: 'React', color: '#61dafb', icon: '⚛️' },
       { name: 'Node.js', color: '#339933', icon: '🟢' },
       { name: 'MongoDB', color: '#47A248', icon: '🍃' },
@@ -26,8 +29,11 @@ const sampleProjects: ProjectCardProps[] = [
   {
     title: 'Portfolio Website',
     description: 'A modern portfolio website built with React and TypeScript, featuring dark mode, responsive design, and smooth animations.',
-    image: 'https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?auto=format&fit=crop&w=400&h=200',
-    techStack: [
+    image: {
+      src: 'https://picsum.photos/400/200?random=2',
+      alt: 'Portfolio Website'
+    },
+    techStacks: [
       { name: 'React', color: '#61dafb', icon: '⚛️' },
       { name: 'TypeScript', color: '#3178c6', icon: '📘' },
       { name: 'CSS3', color: '#1572B6', icon: '🎨' }
@@ -43,8 +49,11 @@ const sampleProjects: ProjectCardProps[] = [
   {
     title: 'Task Management App',
     description: 'A collaborative task management application with real-time updates, drag-and-drop functionality, and team collaboration features.',
-    image: 'https://images.unsplash.com/photo-1611224923853-80b023f02d71?auto=format&fit=crop&w=400&h=200',
-    techStack: [
+    image: {
+      src: 'https://picsum.photos/400/200?random=3',
+      alt: 'Task Management App'
+    },
+    techStacks: [
       { name: 'React', color: '#61dafb', icon: '⚛️' },
       { name: 'Firebase', color: '#FFCA28', icon: '🔥' },
       { name: 'Material-UI', color: '#0081CB', icon: '🎨' }
@@ -60,7 +69,8 @@ const sampleProjects: ProjectCardProps[] = [
   {
     title: 'Machine Learning Model',
     description: 'An archived machine learning project for image classification using TensorFlow and Python.',
-    techStack: [
+    image: 'https://picsum.photos/400/200?random=4',
+    techStacks: [
       { name: 'Python', color: '#3776ab', icon: '🐍' },
       { name: 'TensorFlow', color: '#FF6F00', icon: '🧠' },
       { name: 'Jupyter', color: '#F37626', icon: '📊' }
@@ -93,7 +103,7 @@ function App() {
         <h1>@asafarim/project-card</h1>
         <p>A powerful and flexible React component for displaying project cards</p>
         <PackageLinks packageName="@asafarim/project-card" githubPath="project-card" demoPath="project-card" />
-        
+
         <div className="theme-toggle">
           <button onClick={toggleTheme}>
             Switch to {theme === 'light' ? 'Dark' : 'Light'} Theme
@@ -140,7 +150,7 @@ function App() {
 <ProjectCard
   title="My Awesome Project"
   description="A description of my project"
-  techStack={[
+  techStacks={[
     { name: 'React', color: '#61dafb', icon: '⚛️' },
     { name: 'TypeScript', color: '#3178c6', icon: '📘' }
   ]}
@@ -186,7 +196,7 @@ function App() {
         </div>
         {showLoadingDemo && (
           <div className="demo-single">
-            <div 
+            <div
               style={{
                 border: '1px solid #e2e8f0',
                 borderRadius: '8px',
@@ -198,12 +208,12 @@ function App() {
                 overflow: 'hidden'
               }}
             >
-              <div 
+              <div
                 style={{
                   height: '200px',
                   marginBottom: '1rem',
                   borderRadius: '4px',
-                  background: theme === 'dark' 
+                  background: theme === 'dark'
                     ? 'linear-gradient(90deg, #333 25%, #444 50%, #333 75%)'
                     : 'linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%)',
                   backgroundSize: '200% 100%',
@@ -211,12 +221,12 @@ function App() {
                   width: '100%'
                 }}
               />
-              <div 
+              <div
                 style={{
                   height: '1.5rem',
                   marginBottom: '0.75rem',
                   borderRadius: '4px',
-                  background: theme === 'dark' 
+                  background: theme === 'dark'
                     ? 'linear-gradient(90deg, #333 25%, #444 50%, #333 75%)'
                     : 'linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%)',
                   backgroundSize: '200% 100%',
@@ -224,12 +234,12 @@ function App() {
                   width: '70%'
                 }}
               />
-              <div 
+              <div
                 style={{
                   height: '3rem',
                   marginBottom: '1rem',
                   borderRadius: '4px',
-                  background: theme === 'dark' 
+                  background: theme === 'dark'
                     ? 'linear-gradient(90deg, #333 25%, #444 50%, #333 75%)'
                     : 'linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%)',
                   backgroundSize: '200% 100%',
@@ -237,11 +247,11 @@ function App() {
                   width: '100%'
                 }}
               />
-              <div 
+              <div
                 style={{
                   height: '2rem',
                   borderRadius: '4px',
-                  background: theme === 'dark' 
+                  background: theme === 'dark'
                     ? 'linear-gradient(90deg, #333 25%, #444 50%, #333 75%)'
                     : 'linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%)',
                   backgroundSize: '200% 100%',
@@ -262,7 +272,7 @@ function App() {
             title="Featured Project"
             description="This is a featured project card with special styling to make it stand out from regular cards."
             image="https://images.unsplash.com/photo-1551650975-87deedd944c3?auto=format&fit=crop&w=400&h=200"
-            techStack={[
+            techStacks={[
               { name: 'React', color: '#61dafb', icon: '⚛️' },
               { name: 'Next.js', color: '#000000', icon: '▲' },
               { name: 'Tailwind', color: '#06b6d4', icon: '🎨' }
@@ -291,7 +301,7 @@ function App() {
   imageAlt="Alternative text for image"
   
   // Tech stack with colors and icons
-  techStack={[
+  techStacks={[
     { name: 'React', color: '#61dafb', icon: '⚛️' }
   ]}
   
@@ -366,7 +376,7 @@ const links: ProjectLink[] = [
 const projectProps: ProjectCardProps = {
   title: 'My Project',
   description: 'Description',
-  techStack,
+  techStacks,
   links
 };`}
           language="typescript"

@@ -1,7 +1,7 @@
 export interface TechStackItem {
   name: string;
-  color?: string;
-  icon?: string;
+  color?: any ;
+  icon?: any;
 }
 
 export interface ProjectLink {
@@ -12,11 +12,18 @@ export interface ProjectLink {
 
 export type Theme = 'light' | 'dark' | 'auto';
 
+export interface ProjectImage {
+  src: string;
+  alt: string;
+  width?: number;
+  height?: number;
+}
+
 export interface ProjectCardProps {
   title: string;
-  image?: string;
+  image?: string | ProjectImage;
   description: string;
-  techStack: TechStackItem[];
+  techStacks?: TechStackItem[];
   links: ProjectLink[];
   currentTheme?: Theme;
   className?: string;
@@ -27,5 +34,5 @@ export interface ProjectCardProps {
   isLoading?: boolean;
   featured?: boolean;
   lastUpdated?: string;
-  status?: 'active' | 'archived' | 'in-progress';
+  status?: 'active' | 'draft' | 'archived' | 'completed' | 'in-progress' | 'coming-soon';
 }

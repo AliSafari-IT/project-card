@@ -10,7 +10,7 @@ export default defineConfig(({ mode }) => {
     plugins: [react()],
     base: isProd ? '/project-card/' : '/',  // Match the repository name for GitHub Pages
     server: {
-      port: 3007,
+      port: 3008,
       open: true
     },
     build: {
@@ -19,7 +19,8 @@ export default defineConfig(({ mode }) => {
     },
     resolve: {
       alias: {
-        '@': resolve(__dirname, './src')
+        '@': resolve(__dirname, './src'),
+        '@asafarim/project-card': resolve(__dirname, '../src')
       }
     },
   };

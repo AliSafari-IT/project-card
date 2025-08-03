@@ -1,6 +1,6 @@
 {
   "name": "project-card-demo",
-  "version": "1.0.2",
+  "version": "1.1.0",
   "private": true,
   "type": "module",
   "scripts": {
@@ -14,7 +14,6 @@
     "pregp": "pnpm run build"
   },
   "dependencies": {
-    "@asafarim/project-card": "file:..",
     "@asafarim/display-code": "^1.0.1",
     "@asafarim/shared": "^1.0.3",
     "react": "^18.2.0",

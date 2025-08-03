@@ -6,7 +6,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
   title,
   image,
   description,
-  techStack,
+  techStacks,
   links,
   currentTheme = 'light',
   className = '',
@@ -20,7 +20,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
   status = 'active'
 }) => {
   const isDark = currentTheme === 'dark';
-  
+
   const truncatedDescription = maxDescriptionLength && description.length > maxDescriptionLength
     ? `${description.substring(0, maxDescriptionLength)}...`
     : description;
@@ -30,7 +30,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
       case 'demo':
         return '🚀';
       case 'repo':
-        return '📂';
+        return '🐙';
       case 'documentation':
         return '📚';
       default:
@@ -46,6 +46,12 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
         return 'Archived';
       case 'in-progress':
         return 'In Progress';
+      case 'draft':
+        return 'Draft';
+      case 'completed':
+        return 'Completed';
+      case 'coming-soon':
+        return 'Coming Soon';
       default:
         return 'Active';
     }
@@ -62,40 +68,40 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
   if (isLoading) {
     return (
       <div className={cardClasses} style={{ width: '100%' }}>
-        <div 
-          className={`${styles.loadingPlaceholder} ${isDark ? styles.loadingPlaceholderDark : ''}`} 
-          style={{ 
-            height: '200px', 
-            marginBottom: '1rem', 
+        <div
+          className={`${styles.loadingPlaceholder} ${isDark ? styles.loadingPlaceholderDark : ''}`}
+          style={{
+            height: '200px',
+            marginBottom: '1rem',
             width: '100%',
             display: 'block'
-          }} 
+          }}
         />
-        <div 
-          className={`${styles.loadingPlaceholder} ${isDark ? styles.loadingPlaceholderDark : ''}`} 
-          style={{ 
-            height: '1.5rem', 
-            marginBottom: '0.75rem', 
+        <div
+          className={`${styles.loadingPlaceholder} ${isDark ? styles.loadingPlaceholderDark : ''}`}
+          style={{
+            height: '1.5rem',
+            marginBottom: '0.75rem',
             width: '100%',
             display: 'block'
-          }} 
+          }}
         />
-        <div 
-          className={`${styles.loadingPlaceholder} ${isDark ? styles.loadingPlaceholderDark : ''}`} 
-          style={{ 
-            height: '3rem', 
-            marginBottom: '1rem', 
+        <div
+          className={`${styles.loadingPlaceholder} ${isDark ? styles.loadingPlaceholderDark : ''}`}
+          style={{
+            height: '3rem',
+            marginBottom: '1rem',
             width: '100%',
             display: 'block'
-          }} 
+          }}
         />
-        <div 
-          className={`${styles.loadingPlaceholder} ${isDark ? styles.loadingPlaceholderDark : ''}`} 
-          style={{ 
+        <div
+          className={`${styles.loadingPlaceholder} ${isDark ? styles.loadingPlaceholderDark : ''}`}
+          style={{
             height: '2rem',
             width: '100%',
             display: 'block'
-          }} 
+          }}
         />
       </div>
     );
@@ -108,14 +114,16 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
           {getStatusLabel(status)}
         </div>
       )}
-      
+
       <div className={styles.imageContainer}>
         {image ? (
-          <img 
-            src={image} 
+          <img
+            src={typeof image === 'string' ? image : image.src}
             alt={imageAlt || title}
             className={styles.image}
             loading="lazy"
+            width={typeof image === 'object' ? image.width : undefined}
+            height={typeof image === 'object' ? image.height : undefined}
           />
         ) : (
           <div className={`${styles.imagePlaceholder} ${isDark ? styles.imagePlaceholderDark : ''}`}>
@@ -133,9 +141,9 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
       </p>
 
       <div className={styles.techStack}>
-        {techStack.map((tech, index) => (
-          <span 
-            key={index} 
+        {techStacks?.map((tech, index) => (
+          <span
+            key={index}
             className={`${styles.techTag} ${isDark ? styles.techTagDark : ''}`}
             style={{ backgroundColor: tech.color }}
           >

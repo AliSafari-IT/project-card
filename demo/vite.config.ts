@@ -8,7 +8,7 @@ export default defineConfig(({ mode }) => {
   
   return {
     plugins: [react()],
-    base: isProd ? '/project-card/' : '/',  // Match the repository name for GitHub Pages
+    base: '/project-card/',  // Match the repository name for GitHub Pages
     server: {
       port: 3008,
       open: true

@@ -137,7 +137,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
 
   return (
     <div className={cardClasses} >
-      <div onClick={onCardClick}>
+      <div onClick={onCardClick} style={{ cursor: 'pointer' }}>
         {status && (
           <div
             style={{
@@ -239,8 +239,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
       )}
 
       {/* Metadata Section */}
-      {priority || budget || startDate || dueDate && (
-      <div className={styles.metadataSection}>
+      <div className={`${styles.metadataSection} ${priority || budget || startDate || dueDate ? '' : styles.hidden}`}>
         {priority && (
           <div className={styles.metadataItem}>
             <span className={styles.metadataLabel}>Priority:</span>
@@ -251,7 +250,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
         {budget && (
           <div className={styles.metadataItem}>
             <span className={styles.metadataLabel}>Budget:</span>
-            <span className={styles.metadataValue}>${budget.toLocaleString()}</span>
+            <span className={styles.metadataValue}>${budget.toLocaleString('nl-NL')}</span>
           </div>
         )}
 
@@ -273,7 +272,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
           </div>
         )}
       </div>
-      )}
+      
 
       {lastUpdated && (
         <div className={`${styles.lastUpdated} ${isDark ? styles.lastUpdatedDark : ''}`}>

@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { ProjectCard } from '@asafarim/project-card';
 import { DisplayCode } from '@asafarim/display-code';
-import type { ProjectCardProps, ProjectTag } from '@asafarim/project-card';
+import type { ProjectCardProps } from '@asafarim/project-card';
 import { PackageLinks } from '@asafarim/shared';
 
 const sampleProjects: ProjectCardProps[] = [
@@ -14,15 +14,16 @@ const sampleProjects: ProjectCardProps[] = [
       alt: 'E-commerce Platform'
     },
     techStacks: [
-      { name: 'React', color: '#61dafb', icon: '⚛️' },
-      { name: 'Node.js', color: '#339933', icon: '🟢' },
-      { name: 'MongoDB', color: '#47A248', icon: '🍃' },
-      { name: 'Express', color: '#000000', icon: '🚀' }
+      { name: 'React', color: 'var(--pc-tag-bg,rgb(234, 174, 236))', icon: '⚛️' },
+      { name: 'Node.js', color: 'var(--pc-tag-bg,rgb(168, 195, 211))', icon: '🟢' },
+      { name: 'MongoDB', color: 'var(--pc-tag-bg,rgb(212, 209, 155))', icon: '🍃' },
+      { name: 'Express', color: 'var(--pc-tag-bg,rgb(233, 179, 179))', icon: '🚀' }
     ],
     links: [
       { type: 'demo', url: 'https://ecommerce-demo.com', label: 'Live Demo' },
       { type: 'repo', url: 'https://github.com/user/ecommerce' }
     ],
+    currentTheme: 'dark',
     status: 'active',
     featured: true,
     priority: 'High',
@@ -51,10 +52,10 @@ const sampleProjects: ProjectCardProps[] = [
       alt: 'AI Chat Application'
     },
     techStacks: [
-      { name: 'Next.js', color: '#000000', icon: '▲' },
-      { name: 'OpenAI', color: '#10a37f', icon: '🤖' },
-      { name: 'Socket.io', color: '#010101', icon: '🔌' },
-      { name: 'TypeScript', color: '#3178c6', icon: '📘' }
+      { name: 'Next.js', color: 'rgb(207, 160, 209)', icon: '▲' },
+      { name: 'OpenAI', color: 'rgb(231, 227, 169)', icon: '🤖' },
+      { name: 'Socket.io', color: 'rgb(162, 188, 235)', icon: '🔌' },
+      { name: 'TypeScript', color: 'rgb(158, 236, 190)', icon: '📘' }
     ],
     links: [
       { type: 'demo', url: 'https://ai-chat-demo.com' },
@@ -153,7 +154,7 @@ const sampleProjects: ProjectCardProps[] = [
       { name: 'Python', color: '#3776ab', icon: '🐍' },
       { name: 'TensorFlow', color: '#FF6F00', icon: '🧠' },
       { name: 'Jupyter', color: '#F37626', icon: '📊' },
-      { name: 'Flask', color: '#000000', icon: '🍶' }
+      { name: 'Flask', color: 'rgb(207, 160, 209)', icon: '🍶' }
     ],
     links: [
       { type: 'repo', url: 'https://github.com/user/ml-model' },
@@ -180,7 +181,7 @@ const sampleProjects: ProjectCardProps[] = [
     title: 'Planning: Blockchain Wallet',
     description: 'A decentralized wallet application for managing cryptocurrencies with advanced security features and multi-chain support.',
     techStacks: [
-      { name: 'Solidity', color: '#363636', icon: '⛓️' },
+      { name: 'Solidity', color: 'rgb(207, 160, 209)', icon: '⛓️' },
       { name: 'Web3.js', color: '#f16822', icon: '🌐' },
       { name: 'React', color: '#61dafb', icon: '⚛️' }
     ],
@@ -209,8 +210,8 @@ const sampleProjects: ProjectCardProps[] = [
     description: 'A cross-platform mobile application built with React Native for fitness tracking and workout planning.',
     techStacks: [
       { name: 'React Native', color: '#61dafb', icon: '📱' },
-      { name: 'Expo', color: '#000020', icon: '⚡' },
-      { name: 'Firebase', color: '#FFCA28', icon: '🔥' }
+      { name: 'Expo', color: 'rgb(162, 188, 235)', icon: '⚡' },
+      { name: 'Firebase', color: 'rgb(240, 227, 46)', icon: '🔥' }
     ],
     links: [
       { type: 'demo', url: 'https://fitness-app-demo.com' },
@@ -573,7 +574,7 @@ const projectCards = mapProjects(sortedProjects);
             image="https://images.unsplash.com/photo-1551650975-87deedd944c3?auto=format&fit=crop&w=400&h=200"
             techStacks={[
               { name: 'React', color: '#61dafb', icon: '⚛️' },
-              { name: 'Next.js', color: '#000000', icon: '▲' },
+              { name: 'Next.js', color: 'rgb(207, 160, 209)', icon: '▲' },
               { name: 'Tailwind', color: '#06b6d4', icon: '🎨' }
             ]}
             links={[

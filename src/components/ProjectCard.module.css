@@ -1,38 +1,245 @@
+/* ===== PROJECT CARD THEME VARIABLES ===== */
+
+/* Light Theme Variables */
+:root {
+  /* Base Colors */
+  --pc-primary: #0066cc;
+  --pc-primary-hover: #0052a3;
+  --pc-primary-light: #4da6ff;
+  --pc-primary-bg: #f6f9fc;
+  --pc-primary-bg-light: #eef6ff;
+  
+  /* Background Colors */
+  --pc-bg-primary: #ffffff;
+  --pc-bg-secondary: #f8f9fa;
+  --pc-bg-tertiary: #f1f3f4;
+  --pc-bg-placeholder: #f0f0f0;
+  --pc-bg-placeholder-alt: #e0e0e0;
+  
+  /* Text Colors */
+  --pc-text-primary: #1a1a1a;
+  --pc-text-secondary: #666;
+  --pc-text-tertiary: #9ca3af;
+  --pc-text-muted: #6b7280;
+  
+  /* Border Colors */
+  --pc-border-primary: #e1e5e9;
+  --pc-border-secondary: #d1d5db;
+  --pc-border-tertiary: #333;
+  
+  /* Status Colors */
+  --pc-status-active-bg: #dcfce7;
+  --pc-status-active-text: #166534;
+  --pc-status-archived-bg: #f3f4f6;
+  --pc-status-archived-text: #6b7280;
+  --pc-status-in-progress-bg: #fef3c7;
+  --pc-status-in-progress-text: #92400e;
+  --pc-status-completed-bg: #dbeafe;
+  --pc-status-completed-text: #1e40af;
+  --pc-status-draft-bg: #f3f4f6;
+  --pc-status-draft-text: #6b7280;
+  --pc-status-coming-soon-bg: #fef3c7;
+  --pc-status-coming-soon-text: #92400e;
+  --pc-status-planning-bg: #e0e7ff;
+  --pc-status-planning-text: #3730a3;
+  
+  /* Link Colors */
+  --pc-link-demo-bg: #0066cc;
+  --pc-link-demo-hover: #0052a3;
+  --pc-link-repo-bg: #f1f3f4;
+  --pc-link-repo-hover: #e5e7eb;
+  --pc-link-documentation-bg: #f59e0b;
+  --pc-link-documentation-hover: #d97706;
+  --pc-link-custom-bg: #6b7280;
+  --pc-link-custom-hover: #4b5563;
+  
+  /* State Colors */
+  --pc-state-private-border: #ef4444;
+  --pc-state-private-bg: linear-gradient(135deg, #fef2f2 0%, #fee2e2 100%);
+  --pc-state-completed-border: #10b981;
+  --pc-state-completed-bg: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+  --pc-state-draft-border: #6b7280;
+  --pc-state-draft-bg: linear-gradient(135deg, #f9fafb 0%, #f3f4f6 100%);
+  --pc-state-in-progress-border: #f59e0b;
+  --pc-state-in-progress-bg: linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%);
+  --pc-state-coming-soon-border: #8b5cf6;
+  --pc-state-coming-soon-bg: linear-gradient(135deg, #faf5ff 0%, #f3e8ff 100%);
+  --pc-state-active-border: #10b981;
+  --pc-state-active-bg: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+  --pc-state-planning-border: #3b82f6;
+  --pc-state-planning-bg: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
+  
+  /* Progress Bar */
+  --pc-progress-bg: #e1e5e9;
+  --pc-progress-fill: linear-gradient(90deg, #0066cc 0%, #4da6ff 100%);
+  
+  /* Tag Colors */
+  --pc-tag-bg: #f0f0f0;
+  --pc-tag-hover: #e0e0e0;
+  --pc-tag-text: #666;
+  
+  /* Metadata Colors */
+  --pc-metadata-bg: #f8f9fa;
+  --pc-metadata-border: #0066cc;
+  --pc-metadata-label: #666;
+  --pc-metadata-value: #1a1a1a;
+  
+  /* Shadow Colors */
+  --pc-shadow-light: rgba(0, 0, 0, 0.1);
+  --pc-shadow-medium: rgba(0, 0, 0, 0.15);
+  --pc-shadow-heavy: rgba(0, 0, 0, 0.4);
+  
+  /* Featured Colors */
+  --pc-featured-border: #0066cc;
+  --pc-featured-bg: linear-gradient(135deg, #f6f9fc 0%, #eef6ff 100%);
+  
+  /* Image Placeholder */
+  --pc-image-placeholder-bg: linear-gradient(135deg, #f0f0f0 0%, #e0e0e0 100%);
+  --pc-image-placeholder-text: #666;
+  
+  /* Loading Colors */
+  --pc-loading-bg: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+}
+
+/* Dark Theme Variables */
+[data-theme="dark"] {
+  /* Base Colors */
+  --pc-primary: #4da6ff;
+  --pc-primary-hover: #3b82f6;
+  --pc-primary-light: #60a5fa;
+  --pc-primary-bg: #1a2332;
+  --pc-primary-bg-light: #2a3f5f;
+  
+  /* Background Colors */
+  --pc-bg-primary: #1a1a1a;
+  --pc-bg-secondary: #2a2a2a;
+  --pc-bg-tertiary: #333;
+  --pc-bg-placeholder: #333;
+  --pc-bg-placeholder-alt: #444;
+  
+  /* Text Colors */
+  --pc-text-primary: #ffffff;
+  --pc-text-secondary: #ccc;
+  --pc-text-tertiary: #6b7280;
+  --pc-text-muted: #9ca3af;
+  
+  /* Border Colors */
+  --pc-border-primary: #333;
+  --pc-border-secondary: #555;
+  --pc-border-tertiary: #666;
+  
+  /* Status Colors */
+  --pc-status-active-bg: #166534;
+  --pc-status-active-text: #dcfce7;
+  --pc-status-archived-bg: #374151;
+  --pc-status-archived-text: #9ca3af;
+  --pc-status-in-progress-bg: #92400e;
+  --pc-status-in-progress-text: #fef3c7;
+  --pc-status-completed-bg: #1e40af;
+  --pc-status-completed-text: #dbeafe;
+  --pc-status-draft-bg: #374151;
+  --pc-status-draft-text: #9ca3af;
+  --pc-status-coming-soon-bg: #92400e;
+  --pc-status-coming-soon-text: #fef3c7;
+  --pc-status-planning-bg: #3730a3;
+  --pc-status-planning-text: #e0e7ff;
+  
+  /* Link Colors */
+  --pc-link-demo-bg: #0066cc;
+  --pc-link-demo-hover: #0052a3;
+  --pc-link-repo-bg: #333;
+  --pc-link-repo-hover: #444;
+  --pc-link-documentation-bg: #f59e0b;
+  --pc-link-documentation-hover: #d97706;
+  --pc-link-custom-bg: #6b7280;
+  --pc-link-custom-hover: #4b5563;
+  
+  /* State Colors - Dark theme uses same borders but darker backgrounds */
+  --pc-state-private-border: #ef4444;
+  --pc-state-private-bg: linear-gradient(135deg, #2a1a1a 0%, #1a0a0a 100%);
+  --pc-state-completed-border: #10b981;
+  --pc-state-completed-bg: linear-gradient(135deg, #0a1a0a 0%, #0a2a0a 100%);
+  --pc-state-draft-border: #6b7280;
+  --pc-state-draft-bg: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%);
+  --pc-state-in-progress-border: #f59e0b;
+  --pc-state-in-progress-bg: linear-gradient(135deg, #2a1a0a 0%, #1a0a0a 100%);
+  --pc-state-coming-soon-border: #8b5cf6;
+  --pc-state-coming-soon-bg: linear-gradient(135deg, #1a0a2a 0%, #0a0a1a 100%);
+  --pc-state-active-border: #10b981;
+  --pc-state-active-bg: linear-gradient(135deg, #0a1a0a 0%, #0a2a0a 100%);
+  --pc-state-planning-border: #3b82f6;
+  --pc-state-planning-bg: linear-gradient(135deg, #0a0a2a 0%, #0a1a3a 100%);
+  
+  /* Progress Bar */
+  --pc-progress-bg: #333;
+  --pc-progress-fill: linear-gradient(90deg, #0066cc 0%, #4da6ff 100%);
+  
+  /* Tag Colors */
+  --pc-tag-bg: #333;
+  --pc-tag-hover: #444;
+  --pc-tag-text: #ccc;
+  
+  /* Metadata Colors */
+  --pc-metadata-bg: #2a2a2a;
+  --pc-metadata-border: #4da6ff;
+  --pc-metadata-label: #ccc;
+  --pc-metadata-value: #ffffff;
+  
+  /* Shadow Colors */
+  --pc-shadow-light: rgba(0, 0, 0, 0.3);
+  --pc-shadow-medium: rgba(0, 0, 0, 0.4);
+  --pc-shadow-heavy: rgba(0, 0, 0, 0.6);
+  
+  /* Featured Colors */
+  --pc-featured-border: #4da6ff;
+  --pc-featured-bg: linear-gradient(135deg, #1a2332 0%, #2a3f5f 100%);
+  
+  /* Image Placeholder */
+  --pc-image-placeholder-bg: linear-gradient(135deg, #333 0%, #444 100%);
+  --pc-image-placeholder-text: #ccc;
+  
+  /* Loading Colors */
+  --pc-loading-bg: linear-gradient(90deg, #333 25%, #444 50%, #333 75%);
+}
+
+.hidden {
+  display: none;
+}
+
 .card {
-  border: 1px solid #e1e5e9;
+  border: 1px solid var(--pc-border-primary);
   border-radius: 12px;
   padding: 1.5rem;
-  background: #ffffff;
+  background: var(--pc-bg-primary);
   transition: all 0.3s ease;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  cursor: pointer;
+  box-shadow: 0 2px 8px var(--pc-shadow-light);
   position: relative;
   overflow: hidden;
 }
 
 .card:hover {
   transform: translateY(-4px);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 8px 24px var(--pc-shadow-medium);
 }
 
 .cardDark {
-  background: #1a1a1a;
-  border-color: #333;
-  color: #ffffff;
+  background: var(--pc-bg-primary);
+  border-color: var(--pc-border-primary);
+  color: var(--pc-text-primary);
 }
 
 .cardDark:hover {
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 8px 24px var(--pc-shadow-heavy);
 }
 
 .featured {
-  border: 2px solid #0066cc;
-  background: linear-gradient(135deg, #f6f9fc 0%, #eef6ff 100%);
+  border: 2px solid var(--pc-featured-border);
+  background: var(--pc-featured-bg);
 }
 
 .featuredDark {
-  border: 2px solid #4da6ff;
-  background: linear-gradient(135deg, #1a2332 0%, #2a3f5f 100%);
+  border: 2px solid var(--pc-featured-border);
+  background: var(--pc-featured-bg);
 }
 
 .imageContainer {
@@ -58,39 +265,39 @@
 .imagePlaceholder {
   width: 100%;
   height: 100%;
-  background: linear-gradient(135deg, #f0f0f0 0%, #e0e0e0 100%);
+  background: var(--pc-image-placeholder-bg);
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #666;
+  color: var(--pc-image-placeholder-text);
   font-size: 0.9rem;
 }
 
 .imagePlaceholderDark {
-  background: linear-gradient(135deg, #333 0%, #444 100%);
-  color: #ccc;
+  background: var(--pc-image-placeholder-bg);
+  color: var(--pc-image-placeholder-text);
 }
 
 .title {
   font-size: 1.5rem;
   font-weight: 600;
   margin-bottom: 0.75rem;
-  color: #1a1a1a;
+  color: var(--pc-text-primary);
   line-height: 1.3;
 }
 
 .titleDark {
-  color: #ffffff;
+  color: var(--pc-text-primary);
 }
 
 .description {
-  color: #666;
+  color: var(--pc-text-secondary);
   line-height: 1.5;
   margin-bottom: 1rem;
 }
 
 .descriptionDark {
-  color: #ccc;
+  color: var(--pc-text-secondary);
 }
 
 /* Loading state styles */
@@ -102,7 +309,7 @@
 }
 
 .loadingPlaceholder {
-  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background: var(--pc-loading-bg);
   background-size: 200% 100%;
   animation: loading 1.5s infinite;
   border-radius: 4px;
@@ -113,7 +320,7 @@
 }
 
 .loadingPlaceholderDark {
-  background: linear-gradient(90deg, #333 25%, #444 50%, #333 75%) !important;
+  background: var(--pc-loading-bg) !important;
   background-size: 200% 100% !important;
   animation: loading 1.5s infinite !important;
 }
@@ -144,8 +351,8 @@
 }
 
 .techTag {
-  background: #f1f3f4;
-  color: #333;
+  background: var(--pc-bg-tertiary);
+  color: var(--pc-text-primary);
   padding: 0.25rem 0.75rem;
   border-radius: 16px;
   font-size: 0.875rem;
@@ -156,8 +363,8 @@
 }
 
 .techTagDark {
-  background: #333;
-  color: #fff;
+  background: var(--pc-bg-tertiary);
+  color: var(--pc-text-primary);
 }
 
 .techIcon {
@@ -184,41 +391,41 @@
 }
 
 .linkDemo {
-  background: #0066cc;
+  background: var(--pc-link-demo-bg);
   color: white;
 }
 
 .linkDemo:hover {
-  background: #0052a3;
+  background: var(--pc-link-demo-hover);
 }
 
 .linkRepo {
-  background: #f1f3f4;
-  color: #333;
-  border: 1px solid #d1d5db;
+  background: var(--pc-link-repo-bg);
+  color: var(--pc-text-primary);
+  border: 1px solid var(--pc-border-secondary);
 }
 
 .linkRepo:hover {
-  background: #e5e7eb;
+  background: var(--pc-link-repo-hover);
 }
 
 .linkRepoDark {
-  background: #333;
-  color: #fff;
-  border: 1px solid #555;
+  background: var(--pc-link-repo-bg);
+  color: var(--pc-text-primary);
+  border: 1px solid var(--pc-border-secondary);
 }
 
 .linkRepoDark:hover {
-  background: #444;
+  background: var(--pc-link-repo-hover);
 }
 
 .linkCustom {
-  background: #6b7280;
+  background: var(--pc-link-custom-bg);
   color: white;
 }
 
 .linkCustom:hover {
-  background: #4b5563;
+  background: var(--pc-link-custom-hover);
 }
 
 .status {
@@ -233,90 +440,90 @@
 }
 
 .statusActive {
-  background: #dcfce7;
-  color: #166534;
+  background: var(--pc-status-active-bg);
+  color: var(--pc-status-active-text);
 }
 
 .statusActiveD ark {
-  background: #166534;
-  color: #dcfce7;
+  background: var(--pc-status-active-bg);
+  color: var(--pc-status-active-text);
 }
 
 .statusArchived {
-  background: #f3f4f6;
-  color: #6b7280;
+  background: var(--pc-status-archived-bg);
+  color: var(--pc-status-archived-text);
 }
 
 .statusArchivedDark {
-  background: #374151;
-  color: #9ca3af;
+  background: var(--pc-status-archived-bg);
+  color: var(--pc-status-archived-text);
 }
 
 .statusInProgress {
-  background: #fef3c7;
-  color: #92400e;
+  background: var(--pc-status-in-progress-bg);
+  color: var(--pc-status-in-progress-text);
 }
 
 .statusInProgressDark {
-  background: #92400e;
-  color: #fef3c7;
+  background: var(--pc-status-in-progress-bg);
+  color: var(--pc-status-in-progress-text);
 }
 
 /* Missing status classes */
 .statusCompleted {
-  background: #dbeafe;
-  color: #1e40af;
+  background: var(--pc-status-completed-bg);
+  color: var(--pc-status-completed-text);
 }
 
 .statusCompletedDark {
-  background: #1e40af;
-  color: #dbeafe;
+  background: var(--pc-status-completed-bg);
+  color: var(--pc-status-completed-text);
 }
 
 .statusDraft {
-  background: #f3f4f6;
-  color: #6b7280;
+  background: var(--pc-status-draft-bg);
+  color: var(--pc-status-draft-text);
 }
 
 .statusDraftDark {
-  background: #374151;
-  color: #9ca3af;
+  background: var(--pc-status-draft-bg);
+  color: var(--pc-status-draft-text);
 }
 
 .statusComingSoon {
-  background: #fef3c7;
-  color: #92400e;
+  background: var(--pc-status-coming-soon-bg);
+  color: var(--pc-status-coming-soon-text);
 }
 
 .statusComingSoonDark {
-  background: #92400e;
-  color: #fef3c7;
+  background: var(--pc-status-coming-soon-bg);
+  color: var(--pc-status-coming-soon-text);
 }
 
 .statusPlanning {
-  background: #e0e7ff;
-  color: #3730a3;
+  background: var(--pc-status-planning-bg);
+  color: var(--pc-status-planning-text);
 }
 
 .statusPlanningDark {
-  background: #3730a3;
-  color: #e0e7ff;
+  background: var(--pc-status-planning-bg);
+  color: var(--pc-status-planning-text);
 }
 
 /* Missing link classes */
 .linkDocumentation {
-  background: #f59e0b;
+  background: var(--pc-link-documentation-bg);
   color: white;
 }
 
 .linkDocumentation:hover {
-  background: #d97706;
+  background: var(--pc-link-documentation-hover);
 }
 
 /* Missing state classes */
 .private {
-  border: 2px solid #ef4444;
-  background: linear-gradient(135deg, #fef2f2 0%, #fee2e2 100%);
+  border: 2px solid var(--pc-state-private-border);
+  background: var(--pc-state-private-bg);
 }
 
 .archived {
@@ -325,43 +532,43 @@
 }
 
 .completed {
-  border: 2px solid #10b981;
-  background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+  border: 2px solid var(--pc-state-completed-border);
+  background: var(--pc-state-completed-bg);
 }
 
 .draft {
-  border: 2px solid #6b7280;
-  background: linear-gradient(135deg, #f9fafb 0%, #f3f4f6 100%);
+  border: 2px solid var(--pc-state-draft-border);
+  background: var(--pc-state-draft-bg);
 }
 
 .inProgress {
-  border: 2px solid #f59e0b;
-  background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%);
+  border: 2px solid var(--pc-state-in-progress-border);
+  background: var(--pc-state-in-progress-bg);
 }
 
 .comingSoon {
-  border: 2px solid #8b5cf6;
-  background: linear-gradient(135deg, #faf5ff 0%, #f3e8ff 100%);
+  border: 2px solid var(--pc-state-coming-soon-border);
+  background: var(--pc-state-coming-soon-bg);
 }
 
 .active {
-  border: 2px solid #10b981;
-  background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+  border: 2px solid var(--pc-state-active-border);
+  background: var(--pc-state-active-bg);
 }
 
 .planning {
-  border: 2px solid #3b82f6;
-  background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
+  border: 2px solid var(--pc-state-planning-border);
+  background: var(--pc-state-planning-bg);
 }
 
 .lastUpdated {
   font-size: 0.75rem;
-  color: #9ca3af;
+  color: var(--pc-text-tertiary);
   margin-top: 0.5rem;
 }
 
 .lastUpdatedDark {
-  color: #6b7280;
+  color: var(--pc-text-muted);
 }
 
 /* Progress Bar Styles */
@@ -375,20 +582,20 @@
   align-items: center;
   margin-bottom: 0.5rem;
   font-size: 0.875rem;
-  color: #666;
+  color: var(--pc-text-secondary);
 }
 
 .progressBar {
   width: 100%;
   height: 8px;
-  background-color: #e1e5e9;
+  background-color: var(--pc-progress-bg);
   border-radius: 4px;
   overflow: hidden;
 }
 
 .progressFill {
   height: 100%;
-  background: linear-gradient(90deg, #0066cc 0%, #4da6ff 100%);
+  background: var(--pc-progress-fill);
   transition: width 0.3s ease;
 }
 
@@ -402,8 +609,8 @@
 
 .tag {
   padding: 0.25rem 0.75rem;
-  background-color: #f0f0f0;
-  color: #666;
+  background-color: var(--pc-tag-bg);
+  color: var(--pc-tag-text);
   border-radius: 16px;
   font-size: 0.75rem;
   font-weight: 500;
@@ -411,7 +618,7 @@
 }
 
 .tag:hover {
-  background-color: #e0e0e0;
+  background-color: var(--pc-tag-hover);
   transform: translateY(-1px);
 }
 
@@ -419,9 +626,9 @@
 .metadataSection {
   margin: 1rem 0;
   padding: 1rem;
-  background-color: #f8f9fa;
+  background-color: var(--pc-metadata-bg);
   border-radius: 8px;
-  border-left: 4px solid #0066cc;
+  border-left: 4px solid var(--pc-metadata-border);
 }
 
 .metadataItem {
@@ -438,39 +645,39 @@
 
 .metadataLabel {
   font-weight: 600;
-  color: #666;
+  color: var(--pc-metadata-label);
 }
 
 .metadataValue {
-  color: #1a1a1a;
+  color: var(--pc-metadata-value);
   font-weight: 500;
 }
 
-/* Dark theme overrides */
+/* Dark theme overrides - These are now handled by CSS variables */
 .cardDark .progressLabel {
-  color: #ccc;
+  color: var(--pc-text-secondary);
 }
 
 .cardDark .tag {
-  background-color: #333;
-  color: #ccc;
+  background-color: var(--pc-tag-bg);
+  color: var(--pc-tag-text);
 }
 
 .cardDark .tag:hover {
-  background-color: #444;
+  background-color: var(--pc-tag-hover);
 }
 
 .cardDark .metadataSection {
-  background-color: #2a2a2a;
-  border-left-color: #4da6ff;
+  background-color: var(--pc-metadata-bg);
+  border-left-color: var(--pc-metadata-border);
 }
 
 .cardDark .metadataLabel {
-  color: #ccc;
+  color: var(--pc-metadata-label);
 }
 
 .cardDark .metadataValue {
-  color: #ffffff;
+  color: var(--pc-metadata-value);
 }
 
 @media (max-width: 768px) {

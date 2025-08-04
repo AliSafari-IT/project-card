@@ -9,9 +9,21 @@ export type {
   ProjectTag
 } from './types';
 
-export { 
-  mapProject, 
-  mapProjects, 
-  filterPublicProjects, 
-  sortProjects 
+export {
+  mapProject,
+  mapProjects,
+  filterPublicProjects,
+  sortProjects
 } from './utils/projectMapper';
+
+export {
+  applyProjectCardTheme,
+  getCurrentProjectCardTheme,
+  watchProjectCardTheme,
+  createProjectCardThemeContext,
+  applyCustomProjectCardTheme,
+  removeCustomProjectCardTheme,
+  PROJECT_CARD_THEME_VARIABLES
+} from './utils/themeUtils';
+
+export type { ProjectCardTheme } from './utils/themeUtils';

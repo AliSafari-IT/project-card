@@ -40,6 +40,7 @@ const sampleProjects: ProjectCardProps[] = [
     startDate: '2024-01-15',
     dueDate: '2024-03-15',
     budget: 15000,
+    budgetCurrency: 'USD',
     isPublic: true,
     lastUpdated: '2024-01-20'
   },
@@ -76,6 +77,7 @@ const sampleProjects: ProjectCardProps[] = [
     startDate: '2024-01-10',
     dueDate: '2024-02-28',
     budget: 8000,
+    budgetCurrencySymbol: '€',
     isPublic: true,
     lastUpdated: '2024-01-18'
   },
@@ -109,6 +111,7 @@ const sampleProjects: ProjectCardProps[] = [
     startDate: '2024-01-05',
     dueDate: '2024-04-15',
     budget: 5000,
+    budgetCurrency: 'EUR',
     isPublic: true,
     lastUpdated: '2024-01-15'
   },
@@ -142,6 +145,7 @@ const sampleProjects: ProjectCardProps[] = [
     startDate: '2023-12-01',
     endDate: '2024-01-10',
     budget: 2000,
+    budgetCurrency: 'USD',
     isPublic: true,
     lastUpdated: '2024-01-10'
   },
@@ -173,6 +177,7 @@ const sampleProjects: ProjectCardProps[] = [
     startDate: '2023-10-01',
     endDate: '2023-12-01',
     budget: 12000,
+    budgetCurrency: 'GBP',
     isPublic: false,
     lastUpdated: '2023-12-01'
   },
@@ -201,6 +206,7 @@ const sampleProjects: ProjectCardProps[] = [
     startDate: '2024-02-01',
     dueDate: '2024-06-30',
     budget: 25000,
+    budgetCurrency: 'CNY',
     isPublic: true,
     lastUpdated: '2024-01-25'
   },

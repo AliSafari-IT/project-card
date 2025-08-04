@@ -33,8 +33,67 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
   thumbnailUrl,
   repositoryUrl,
   liveUrl,
+  budgetCurrency,
+  budgetCurrencySymbol,
 }) => {
   const isDark = currentTheme === 'dark';
+  const getLastUpdated = () => {
+    if (lastUpdated) {
+      return new Date(lastUpdated?? updatedAt).toLocaleDateString();
+    }
+    return '';
+  };
+
+  const getDueDate = () => {
+    if (dueDate) {
+      return new Date(dueDate).toLocaleDateString();
+    }
+    return '';
+  };
+
+  const getStartDate = () => {
+    if (startDate) {
+      return new Date(startDate).toLocaleDateString();
+    }
+    return '';
+  };
+
+  const getBudget = () => {
+    if (budget) {
+      return `${getBudgetCurrencySymbol()}${budget.toLocaleString()}`;
+    }
+    return budget || '';
+  };
+
+  const getBudgetCurrency = () => {
+    if (budgetCurrency) {
+      return budgetCurrency.toUpperCase();
+    }
+    return budgetCurrencySymbol || '';
+  };
+
+  const getBudgetCurrencySymbol = () => {
+    if (budgetCurrencySymbol) {
+      return budgetCurrencySymbol;
+    } else if (budgetCurrency === 'USD') {
+      return '$';
+    } else if (budgetCurrency === 'EUR') {
+      return '€';
+    } else if (budgetCurrency === 'GBP') {
+      return '£';
+    } else if (budgetCurrency === 'JPY') {
+      return '¥';
+    } else if (budgetCurrency === 'KRW') {
+      return '₩';
+    } else if (budgetCurrency === 'CNY') {
+      return '¥';
+    } else if (budgetCurrency === 'INR') {
+      return '₹';
+    } else if (budgetCurrency === 'BDT') {
+      return '৳';
+    }
+    return budgetCurrency || getBudgetCurrency();
+  };
 
   const truncatedDescription = maxDescriptionLength && description.length > maxDescriptionLength
     ? `${description.substring(0, maxDescriptionLength)}...`
@@ -154,11 +213,11 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
         {image && (<div className={styles.imageContainer}>
           <img
             src={typeof image === 'string' ? image : image.src}
-            alt={imageAlt || title}
+            alt={typeof image === 'string' ? imageAlt || title : image.alt || title}
             className={styles.image}
             loading="lazy"
-            width={typeof image === 'object' ? image.width : undefined}
-            height={typeof image === 'object' ? image.height : undefined}
+            width={typeof image === 'object' ? image?.width : undefined}
+            height={typeof image === 'object' ? image?.height : undefined}
           />
         </div>
         )}
@@ -247,36 +306,36 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
           </div>
         )}
 
-        {budget && (
+        {getBudget() !== '' && (
           <div className={styles.metadataItem}>
             <span className={styles.metadataLabel}>Budget:</span>
-            <span className={styles.metadataValue}>${budget.toLocaleString('nl-NL')}</span>
+            <span className={styles.metadataValue}>{getBudget()}</span>
           </div>
         )}
 
-        {startDate && (
+        {getStartDate() !== '' && (
           <div className={styles.metadataItem}>
             <span className={styles.metadataLabel}>Start:</span>
             <span className={styles.metadataValue}>
-              {new Date(startDate).toLocaleDateString()}
+              {getStartDate()}
             </span>
           </div>
         )}
 
-        {dueDate && (
+        {getDueDate() !== '' && (
           <div className={styles.metadataItem}>
             <span className={styles.metadataLabel}>Due:</span>
             <span className={styles.metadataValue}>
-              {new Date(dueDate).toLocaleDateString()}
+              {getDueDate()}
             </span>
           </div>
         )}
       </div>
       
 
-      {lastUpdated && (
+      {getLastUpdated() !== '' && (
         <div className={`${styles.lastUpdated} ${isDark ? styles.lastUpdatedDark : ''}`}>
-          Last updated: {new Date(lastUpdated).toLocaleDateString()}
+          Last updated: {getLastUpdated()}
         </div>
       )}
     </div>

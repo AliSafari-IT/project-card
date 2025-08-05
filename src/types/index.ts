@@ -7,9 +7,23 @@ export interface TechStackItem {
 }
 
 export interface ProjectLink {
-  type: 'demo' | 'repo' | 'documentation' | 'custom';
-  url: string;
-  label?: string;
+  label: string;
+  type?: 'demo' | 'repo' | 'documentation' | 'custom';
+  url?: string;
+  icon?: string | ReactNode;
+  target?: '_blank' | '_self' | '_parent' | '_top';
+  className?: string;
+  style?: React.CSSProperties;
+  onClick?: () => void;
+}
+
+// RelatedProjects
+export interface RelatedProject {
+  title: string;
+  image?: string | ProjectImage;
+  description?: string;
+  repo?: ProjectLink;
+  link?: ProjectLink;
 }
 
 export type Theme = 'light' | 'dark' | 'auto';
@@ -27,48 +41,55 @@ export interface ProjectTag {
   navigateTo?: string;
 }
 
+export interface ProjectBudget {
+  amount: number;
+  currencySymbol?: string;
+  currencyCode?: string;
+  roundingIncrement?: number;
+  currencyFormatOptions?: Intl.NumberFormatOptions;
+}
+
 export interface ProjectCardProps {
   // Core properties
   title: string;
-  image?: string | ProjectImage;
   description: string;
+  image?: string | ProjectImage;
   techStacks?: TechStackItem[];
   links: ProjectLink[];
-  thumbnailUrl?: string;
-  repositoryUrl?: string;
-  liveUrl?: string;
+  repo?:ProjectLink;
   
   // Theming and appearance
   currentTheme?: Theme;
   className?: string;
   showTechStackIcons?: boolean;
   maxDescriptionLength?: number;
-  imageAlt?: string;
-  featured?: boolean;
+  isFeatured?: boolean;
   
   // Behavior
   onCardClick?: () => void;
   isLoading?: boolean;
   
   // Status and metadata
-  status?: 'active' | 'draft' | 'archived' | 'completed' | 'in-progress' | 'coming-soon' | 'planning';
+  status?: 'active' | 'draft' | 'archived' | 'completed' | 'in-progress' | 'coming-soon' | 'planning' ;
   lastUpdated?: string;
   
   // Additional properties from your DB model
-  priority?: string;
+  priority?: 'low' | 'medium' | 'high' | 'critical';
+  category?: 'web' | 'mobile' | 'desktop' | 'backend' | 'frontend' | 'fullstack' | 'database' | 'devops' | 'design' | 'marketing' | 'seo' | 'social' | 'content' | 'analytics' | 'security' | 'testing' | 'other';
   progress?: number;
   tags?: ProjectTag[];
   startDate?: string;
   endDate?: string;
   dueDate?: string;
-  budget?: number;
-  budgetCurrency?: 'USD' | 'EUR' | 'GBP' | 'JPY' | 'KRW' | 'CNY' | 'INR' | 'BDT' | 'PKR' | 'SAR' | 'AED' | 'QAR' | 'KWD' | 'OMR' | 'BHD' | 'JOD' | 'LYD' | 'TND' | 'MAD' | 'AED' | 'QAR' | 'KWD' | 'OMR' | 'BHD' | 'JOD' | 'LYD' | 'TND' | 'MAD' | 'AED' | 'QAR' | 'KWD' | 'OMR' | 'BHD' | 'JOD' | 'LYD' | 'TND' | 'MAD' | 'AED' | 'QAR' | 'KWD' | 'OMR' | 'BHD' | 'JOD' | 'LYD' | 'TND' | 'MAD' | 'AED' | 'QAR' | 'KWD' | 'OMR' | 'BHD' | 'JOD' | 'LYD' | 'TND' | 'MAD' | 'AED' | 'QAR' | 'KWD' | 'OMR' | 'BHD' | 'JOD' | 'LYD' | 'TND' | 'MAD' | 'AED' | 'QAR' | 'KWD' | 'OMR' | 'BHD' | 'JOD' | 'LYD' | 'TND' | 'MAD' | 'AED' | 'QAR' | 'KWD' | 'OMR' | 'BHD' | 'JOD' | 'LYD' | 'TND' | 'MAD' | 'AED' | 'QAR' | 'KWD' | 'OMR' | 'BHD' | 'JOD' | 'LYD' | 'TND' | 'MAD' | 'AED' | 'QAR' | 'KWD' | 'OMR' | 'BHD' | 'JOD' | 'LYD' | 'TND' | 'MAD' | 'AED' | 'QAR' | 'KWD' | 'OMR' | 'BHD' | 'JOD' | 'LYD' | 'TND' | 'MAD' | 'AED' | 'QAR' | 'KWD' | 'OMR' | 'BHD' | 'JOD' | 'LYD' | 'TND' | 'MAD' | 'AED' | 'QAR' | 'KWD' | 'OMR' | 'BHD' | 'JOD' | 'LYD' | 'TND' | 'MAD' | 'AED' | 'QAR' | 'KWD' | 'OMR' | 'BHD' | 'JOD' | 'LYD' | 'TND' | 'MAD' | 'AED' | 'QAR' | 'KWD' | 'OMR' | 'BHD' | 'JOD' | 'LYD' | 'TND' | 'MAD' | 'AED' | 'QAR' | 'KWD' | 'OMR' | 'BHD' | 'JOD' | 'LYD' | 'TND' | 'MAD' | 'AED' | 'QAR' | 'KWD' | 'OMR' | 'BHD' | 'JOD' | 'LYD' | 'TND' | 'MAD' | 'AED' | 'QAR' | 'KWD' | 'OMR' | 'BHD' | 'JOD' | 'LYD' | 'TND' | 'MAD' | 'AED' | 'QAR' | 'KWD' | 'OMR' | 'BHD' | 'JOD' | 'LYD' | 'TND' | 'MAD' | 'AED' | 'QAR' | 'KWD' | 'OMR' | 'BHD' | 'JOD' | 'LYD' | 'TND' | 'MAD' | 'AED' | 'QAR' | 'KWD' | 'OMR' | 'BHD' | 'JOD' | 'LYD' | 'TND' | 'MAD' | 'AED' | 'QAR' | 'KWD' | 'OMR' | 'BHD' | 'JOD' | 'LYD' | 'TND' | 'MAD' | 'AED' | 'QAR' | 'KWD' | 'OMR' | 'BHD' | 'JOD' | 'LYD' | 'TND' | 'MAD' | 'AED' | 'QAR' | 'KWD' | 'OMR' | 'BHD' | 'JOD' | 'LYD' | 'TND' | 'MAD' | 'AED' | 'QAR' | 'KWD' | 'OMR' | 'BHD' | 'JOD' | 'LYD' | 'TND' | 'MAD' | 'AED' | 'QAR' | 'KWD' | 'OMR' | 'BHD' | 'JOD' | 'LYD' | 'TND' | 'MAD' | 'AED' | 'QAR' | 'KWD' | 'OMR' | 'BHD' | 'JOD' | 'LYD' | 'TND' | 'MAD' | 'AED' | 'QAR' | 'KWD' | 'OMR' | 'BHD' | 'JOD' | 'LYD' | 'TND' | 'MAD' | 'AED' | 'QAR' | 'KWD' | 'OMR' | 'BHD' | 'JOD' | 'LYD' | 'TND' | 'MAD' | 'AED' | 'QAR' | 'KWD' | 'OMR' | 'BHD' | 'JOD' | 'LYD' | 'TND' | 'MAD' | 'AED' | 'QAR' | 'KWD' | 'OMR' | 'BHD' | 'JOD' | 'LYD' | 'TND' | 'MAD' | 'AED' | 'QAR' | 'KWD' | 'OMR' | 'BHD' | 'JOD' | 'LYD' | 'TND' | 'MAD' | 'AED' | 'QAR' | 'KWD' | 'OMR' | 'BHD' | 'JOD' | 'LYD' | 'TND' | 'MAD' | 'AED' | 'QAR' | 'KWD' | 'OMR' | 'BHD' | 'JOD' | 'LYD' | 'TND' | 'MAD' | 'AED' | 'QAR' | 'KWD' | 'OMR' | 'BHD' | 'JOD' | 'LYD' | 'TND' | 'MAD' | 'AED' | 'QAR' | 'KWD' | 'OMR' | 'BHD' | 'JOD' | 'LYD' | 'TND' | 'MAD' | 'AED' | 'QAR' | 'KWD' | 'OMR' | 'BHD' | 'JOD' | 'LYD' | 'TND' | 'MAD' | 'AED' | 'QAR' | 'KWD' | 'OMR' | 'BHD' | 'JOD' | 'LYD' | 'TND' | 'MAD' | 'AED' | 'QAR' | 'KWD' | 'OMR' | 'BHD' | 'JOD' | 'LYD' | 'TND' | 'MAD' | 'AED' | 'QAR' | 'KWD' | 'OMR' | 'BHD' | 'JOD' | 'LYD' | 'TND' | 'MAD' | 'AED' | 'QAR' | 'KWD' | 'OMR' | 'BHD' | 'JOD' | 'LYD' | 'TND' | 'MAD' | 'AED' | 'QAR' | 'KWD' | 'OMR' | 'BHD' | 'JOD' | 'LYD' | 'TND' | 'MAD' | 'AED' | 'QAR' | 'KWD' | 'OMR' | 'BHD' | 'JOD' | 'LYD' | 'TND' | 'MAD' | 'AED' | 'QAR' | 'KWD' | 'OMR' | 'BHD' | 'JOD' | 'LYD' | 'TND' | 'MAD' | 'AED' | 'QAR' | 'KWD';
-  budgetCurrencySymbol?: string;
+  createdAt?: string;
+  updatedAt?: string;
+  createdBy?: string;
+  updatedBy?: string;
+  budget?: number | ProjectBudget;
   isPublic?: boolean;
+  relatedProjects?: RelatedProject[];
   
   // Database specific
   id?: string;
   userId?: string;
-  createdAt?: string;
-  updatedAt?: string;
 }

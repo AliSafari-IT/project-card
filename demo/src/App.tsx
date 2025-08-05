@@ -21,17 +21,22 @@ const sampleProjects: ProjectCardProps[] = [
     ],
     links: [
       { type: 'demo', url: 'https://ecommerce-demo.com', label: 'Live Demo' },
-      { type: 'repo', url: 'https://github.com/user/ecommerce' }
+      { type: 'repo', url: 'https://github.com/user/ecommerce', label: 'Repository' }
     ],
+    repo: {
+      type: 'repo',
+      url: 'https://github.com/user/ecommerce',
+      label: 'Repository',
+      icon: '🐙'
+    },
     currentTheme: 'dark',
     status: 'active',
-    featured: true,
-    priority: 'High',
+    isFeatured: true,
+    priority: 'high',
+    category: 'fullstack',
     progress: 85,
     tags: [
-      { name: 'E-commerce', onClick: () => {
-        alert('E-commerce');
-      } },
+      { name: 'E-commerce', onClick: () => alert('E-commerce clicked!') },
       { name: 'Full-stack', navigateTo: 'https://ecommerce-demo2.com' },
       { name: 'React', navigateTo: 'https://ecommerce-demo3.com' },
       { name: 'Node.js', navigateTo: 'https://ecommerce-demo4.com' },
@@ -39,10 +44,38 @@ const sampleProjects: ProjectCardProps[] = [
     ],
     startDate: '2024-01-15',
     dueDate: '2024-03-15',
-    budget: 15000,
-    budgetCurrency: 'USD',
+    endDate: '2024-03-20',
+    budget: {
+      amount: 15000,
+      currencyCode: 'USD',
+      currencySymbol: '$'
+    },
     isPublic: true,
-    lastUpdated: '2024-01-20'
+    createdBy: 'John Doe',
+    updatedBy: 'Jane Smith',
+    lastUpdated: '2024-01-20',
+    relatedProjects: [
+      { 
+        title: 'Payment Gateway', 
+        description: 'Integrated payment processing system with Stripe integration, secure transactions, and real-time payment tracking',
+       image: {
+        src: 'https://picsum.photos/400/200?random=1',
+        alt: 'Payment Gateway'
+       },
+        link: { type: 'demo', url: 'https://payment-gateway-demo.com', label: 'Live Demo', icon: '📦' },
+        repo: { type: 'repo', url: 'https://github.com/user/payment-gateway', label: 'Repository', icon: '🐙' }       
+      },
+      { 
+        title: 'Inventory System', 
+        description: 'Real-time inventory management with barcode scanning, low stock alerts, and automated reordering',
+        link: { type: 'demo', url: 'https://inventory-system-demo.com', label: 'Live Demo', icon: '📦' },
+        repo: { type: 'repo', url: 'https://github.com/user/inventory-system', label: 'Repository', icon: '🐙' },
+        image: {
+          src: 'https://picsum.photos/400/200?random=2',
+          alt: 'Inventory System'
+        }
+      }
+    ]
   },
   {
     id: '2',
@@ -59,13 +92,19 @@ const sampleProjects: ProjectCardProps[] = [
       { name: 'TypeScript', color: 'rgb(158, 236, 190)', icon: '📘' }
     ],
     links: [
-      { type: 'demo', url: 'https://ai-chat-demo.com' },
-      { type: 'repo', url: 'https://github.com/user/ai-chat' },
-      { type: 'documentation', url: 'https://docs.ai-chat.com' }
+      { type: 'demo', url: 'https://ai-chat-demo.com', label: 'Live Demo' },
+      { type: 'documentation', url: 'https://docs.ai-chat.com', label: 'Documentation' }
     ],
+    repo: {
+      type: 'repo',
+      url: 'https://github.com/user/ai-chat',
+      label: 'Repository',
+      icon: '🐙'
+    },
     status: 'in-progress',
-    featured: true,
-    priority: 'High',
+    isFeatured: true,
+    priority: 'critical',
+    category: 'web',
     progress: 65,
     tags: [
       { name: 'AI' },
@@ -76,9 +115,14 @@ const sampleProjects: ProjectCardProps[] = [
     ],
     startDate: '2024-01-10',
     dueDate: '2024-02-28',
-    budget: 8000,
-    budgetCurrencySymbol: '€',
+    budget: {
+      amount: 8000,
+      currencyCode: 'EUR',
+      currencySymbol: '€'
+    },
     isPublic: true,
+    createdBy: 'Alice Johnson',
+    updatedBy: 'Bob Wilson',
     lastUpdated: '2024-01-18'
   },
   {
@@ -95,12 +139,18 @@ const sampleProjects: ProjectCardProps[] = [
       { name: 'Material-UI', color: '#0081CB', icon: '🎨' }
     ],
     links: [
-      { type: 'demo', url: 'https://task-app-demo.com' },
-      { type: 'repo', url: 'https://github.com/user/task-app' }
+      { type: 'demo', url: 'https://task-app-demo.com', label: 'Live Demo' }
     ],
+    repo: {
+      type: 'repo',
+      url: 'https://github.com/user/task-app',
+      label: 'Repository',
+      icon: '🐙'
+    },
     status: 'in-progress',
-    featured: false,
-    priority: 'Medium',
+    isFeatured: false,
+    priority: 'medium',
+    category: 'web',
     progress: 45,
     tags: [
       { name: 'Task Management', navigateTo: 'https://task-app-demo.com' },
@@ -110,9 +160,14 @@ const sampleProjects: ProjectCardProps[] = [
     ],
     startDate: '2024-01-05',
     dueDate: '2024-04-15',
-    budget: 5000,
-    budgetCurrency: 'EUR',
+    budget: {
+      amount: 5000,
+      currencyCode: 'EUR',
+      currencySymbol: '€'
+    },
     isPublic: true,
+    createdBy: 'Sarah Chen',
+    updatedBy: 'Mike Davis',
     lastUpdated: '2024-01-15'
   },
   {
@@ -129,12 +184,18 @@ const sampleProjects: ProjectCardProps[] = [
       { name: 'CSS3', color: '#1572B6', icon: '🎨' }
     ],
     links: [
-      { type: 'demo', url: 'https://portfolio-demo.com' },
-      { type: 'repo', url: 'https://github.com/user/portfolio' }
+      { type: 'demo', url: 'https://portfolio-demo.com', label: 'Live Demo' }
     ],
+    repo: {
+      type: 'repo',
+      url: 'https://github.com/user/portfolio',
+      label: 'Repository',
+      icon: '🐙'
+    },
     status: 'completed',
-    featured: false,
-    priority: 'Low',
+    isFeatured: false,
+    priority: 'low',
+    category: 'frontend',
     progress: 100,
     tags: [
       { name: 'Portfolio' },
@@ -144,9 +205,14 @@ const sampleProjects: ProjectCardProps[] = [
     ],
     startDate: '2023-12-01',
     endDate: '2024-01-10',
-    budget: 2000,
-    budgetCurrency: 'USD',
+    budget: {
+      amount: 2000,
+      currencyCode: 'USD',
+      currencySymbol: '$'
+    },
     isPublic: true,
+    createdBy: 'David Lee',
+    updatedBy: 'David Lee',
     lastUpdated: '2024-01-10'
   },
   {
@@ -161,12 +227,18 @@ const sampleProjects: ProjectCardProps[] = [
       { name: 'Flask', color: 'rgb(207, 160, 209)', icon: '🍶' }
     ],
     links: [
-      { type: 'repo', url: 'https://github.com/user/ml-model' },
-      { type: 'documentation', url: 'https://docs.example.com' }
+      { type: 'documentation', url: 'https://docs.example.com', label: 'Documentation' }
     ],
+    repo: {
+      type: 'repo',
+      url: 'https://github.com/user/ml-model',
+      label: 'Repository',
+      icon: '🐙'
+    },
     status: 'archived',
-    featured: false,
-    priority: 'Medium',
+    isFeatured: false,
+    priority: 'medium',
+    category: 'backend',
     progress: 90,
     tags: [
       { name: 'Machine Learning' },
@@ -176,9 +248,14 @@ const sampleProjects: ProjectCardProps[] = [
     ],
     startDate: '2023-10-01',
     endDate: '2023-12-01',
-    budget: 12000,
-    budgetCurrency: 'GBP',
+    budget: {
+      amount: 12000,
+      currencyCode: 'GBP',
+      currencySymbol: '£'
+    },
     isPublic: false,
+    createdBy: 'Dr. Emily Watson',
+    updatedBy: 'Dr. Emily Watson',
     lastUpdated: '2023-12-01'
   },
   {
@@ -191,11 +268,18 @@ const sampleProjects: ProjectCardProps[] = [
       { name: 'React', color: '#61dafb', icon: '⚛️' }
     ],
     links: [
-      { type: 'documentation', url: 'https://docs.wallet.com' }
+      { type: 'documentation', url: 'https://docs.wallet.com', label: 'Documentation' }
     ],
+    repo: {
+      type: 'repo',
+      url: 'https://github.com/user/blockchain-wallet',
+      label: 'Repository',
+      icon: '🐙'
+    },
     status: 'planning',
-    featured: false,
-    priority: 'High',
+    isFeatured: false,
+    priority: 'high',
+    category: 'web',
     progress: 10,
     tags: [
       { name: 'Blockchain' },
@@ -205,9 +289,14 @@ const sampleProjects: ProjectCardProps[] = [
     ],
     startDate: '2024-02-01',
     dueDate: '2024-06-30',
-    budget: 25000,
-    budgetCurrency: 'CNY',
+    budget: {
+      amount: 25000,
+      currencyCode: 'CNY',
+      currencySymbol: '¥'
+    },
     isPublic: true,
+    createdBy: 'Alex Thompson',
+    updatedBy: 'Alex Thompson',
     lastUpdated: '2024-01-25'
   },
   {
@@ -220,12 +309,18 @@ const sampleProjects: ProjectCardProps[] = [
       { name: 'Firebase', color: 'rgb(240, 227, 46)', icon: '🔥' }
     ],
     links: [
-      { type: 'demo', url: 'https://fitness-app-demo.com' },
-      { type: 'repo', url: 'https://github.com/user/fitness-app' }
+      { type: 'demo', url: 'https://fitness-app-demo.com', label: 'Demo' }
     ],
+    repo: {
+      type: 'repo',
+      url: 'https://github.com/user/fitness-app',
+      label: 'Repository',
+      icon: '🐙'
+    },
     status: 'draft',
-    featured: false,
-    priority: 'Medium',
+    isFeatured: false,
+    priority: 'medium',
+    category: 'mobile',
     progress: 25,
     tags: [
       { name: 'Mobile' },
@@ -235,9 +330,62 @@ const sampleProjects: ProjectCardProps[] = [
     ],
     startDate: '2024-01-20',
     dueDate: '2024-05-15',
-    budget: 8000,
+    budget: {
+      amount: 8000,
+      currencyCode: 'USD',
+      currencySymbol: '$'
+    },
     isPublic: true,
+    createdBy: 'Maria Garcia',
+    updatedBy: 'Carlos Rodriguez',
     lastUpdated: '2024-01-22'
+  },
+  {
+    id: '8',
+    title: 'DevOps Pipeline',
+    description: 'Automated CI/CD pipeline with Docker, Kubernetes, and monitoring tools for scalable deployment.',
+    image: {
+      src: 'https://picsum.photos/400/200?random=8',
+      alt: 'DevOps Pipeline'
+    },
+    techStacks: [
+      { name: 'Docker', color: '#2496ED', icon: '🐳' },
+      { name: 'Kubernetes', color: '#326CE5', icon: '☸️' },
+      { name: 'Jenkins', color: '#D24939', icon: '🔧' },
+      { name: 'Prometheus', color: '#E6522C', icon: '📊' }
+    ],
+    links: [
+      { type: 'demo', url: 'https://devops-demo.com', label: 'Demo' },
+      { type: 'documentation', url: 'https://docs.devops.com', label: 'Documentation' }
+    ],
+    repo: {
+      type: 'repo',
+      url: 'https://github.com/user/devops-pipeline',
+      label: 'Repository',
+      icon: '🐙'
+    },
+    status: 'active',
+    isFeatured: true,
+    priority: 'high',
+    category: 'devops',
+    progress: 75,
+    tags: [
+      { name: 'DevOps' },
+      { name: 'CI/CD' },
+      { name: 'Docker' },
+      { name: 'Kubernetes' }
+    ],
+    startDate: '2024-01-01',
+    dueDate: '2024-03-30',
+    budget: {
+      amount: 15000,
+      currencyCode: 'USD',
+      currencySymbol: '$'
+    },
+    isPublic: true,
+    createdBy: 'DevOps Team',
+    updatedBy: 'DevOps Team',
+    lastUpdated: '2024-01-28'
   }
 ];
 
@@ -584,11 +732,11 @@ const projectCards = mapProjects(sortedProjects);
               { name: 'Tailwind', color: '#06b6d4', icon: '🎨' }
             ]}
             links={[
-              { type: 'demo', url: 'https://featured-demo.com' },
-              { type: 'repo', url: 'https://github.com/user/featured' }
+              { type: 'demo', url: 'https://featured-demo.com', label: 'Live Demo' },
+              { type: 'repo', url: 'https://github.com/user/featured', label: 'Repository' }
             ]}
             currentTheme={theme}
-            featured={true}
+            isFeatured={true}
             showTechStackIcons={true}
             onCardClick={() => handleCardClick('Featured Project')}
             tags={[

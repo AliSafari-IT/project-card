@@ -202,6 +202,16 @@
   --pc-loading-bg: linear-gradient(90deg, #333 25%, #444 50%, #333 75%);
 }
 
+/* Dark theme status badge overrides */
+[data-theme="dark"] .status {
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(8px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #ffffff;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.8);
+}
+
 .hidden {
   display: none;
 }
@@ -432,11 +442,19 @@
   position: absolute;
   top: 1rem;
   right: 1rem;
-  padding: 0.25rem 0.5rem;
+  padding: 0.25rem 0.75rem;
   border-radius: 12px;
   font-size: 0.75rem;
   font-weight: 600;
   text-transform: uppercase;
+  z-index: 20;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(8px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  /* Ensure text is always readable */
+  color: #1a1a1a;
+  text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8);
 }
 
 .statusActive {
@@ -444,7 +462,7 @@
   color: var(--pc-status-active-text);
 }
 
-.statusActiveD ark {
+.statusActiveDark {
   background: var(--pc-status-active-bg);
   color: var(--pc-status-active-text);
 }
@@ -696,4 +714,167 @@
   .link {
     justify-content: center;
   }
+}
+
+/* Related Projects Dialog Styles */
+.relatedProjectDialog {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1000;
+}
+
+.dialogOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+}
+
+.dialogContent {
+  background: var(--pc-bg-primary);
+  border-radius: 12px;
+  box-shadow: 0 20px 40px var(--pc-shadow-heavy);
+  max-width: 500px;
+  width: 100%;
+  max-height: 80vh;
+  overflow-y: auto;
+  border: 1px solid var(--pc-border-primary);
+}
+
+.dialogHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem 1.5rem 1rem;
+  border-bottom: 1px solid var(--pc-border-primary);
+}
+
+.dialogTitle {
+  margin: 0;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--pc-text-primary);
+}
+
+.dialogClose {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: var(--pc-text-secondary);
+  padding: 0.25rem;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+}
+
+.dialogClose:hover {
+  background: var(--pc-bg-tertiary);
+  color: var(--pc-text-primary);
+}
+
+.dialogBody {
+  padding: 1rem 1.5rem 1.5rem;
+}
+
+.dialogDescription {
+  color: var(--pc-text-secondary);
+  line-height: 1.6;
+  margin-bottom: 1rem;
+}
+
+.dialogTechStack {
+  margin-bottom: 1rem;
+}
+
+.dialogTechStack h4 {
+  margin: 0 0 0.5rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--pc-text-primary);
+}
+
+.dialogTechList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.dialogTechTag {
+  background: var(--pc-bg-tertiary);
+  color: var(--pc-text-primary);
+  padding: 0.25rem 0.5rem;
+  border-radius: 12px;
+  font-size: 0.75rem;
+  font-weight: 500;
+}
+
+.dialogLinks {
+  margin-bottom: 1rem;
+}
+
+.dialogLinks h4 {
+  margin: 0 0 0.5rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--pc-text-primary);
+}
+
+.dialogLinksList {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.dialogLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 0.75rem;
+  border-radius: 6px;
+  text-decoration: none;
+  font-size: 0.875rem;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+/* Dark theme overrides for dialog */
+[data-theme="dark"] .dialogContent {
+  background: var(--pc-bg-primary);
+  border-color: var(--pc-border-primary);
+}
+
+[data-theme="dark"] .dialogTitle {
+  color: var(--pc-text-primary);
+}
+
+[data-theme="dark"] .dialogClose {
+  color: var(--pc-text-secondary);
+}
+
+[data-theme="dark"] .dialogClose:hover {
+  background: var(--pc-bg-tertiary);
+  color: var(--pc-text-primary);
+}
+
+[data-theme="dark"] .dialogDescription {
+  color: var(--pc-text-secondary);
+}
+
+[data-theme="dark"] .dialogTechStack h4,
+[data-theme="dark"] .dialogLinks h4 {
+  color: var(--pc-text-primary);
+}
+
+[data-theme="dark"] .dialogTechTag {
+  background: var(--pc-bg-tertiary);
+  color: var(--pc-text-primary);
 }

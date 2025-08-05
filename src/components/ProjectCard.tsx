@@ -292,8 +292,19 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
 
         {/* Status Badge for cards without images */}
         {!image && status && (
-          <div style={{ position: 'relative', marginBottom: '1rem' }}>
-            <div className={`${styles.status} ${styles[`status${status.charAt(0).toUpperCase() + status.slice(1).replace('-', '')}${isDark ? 'Dark' : ''}`]}`}>
+          <div style={{ 
+            display: 'flex', 
+            justifyContent: 'flex-end', 
+            marginBottom: '1rem',
+            alignItems: 'center'
+          }}>
+            <div 
+              className={`${styles.status} ${styles[`status${status.charAt(0).toUpperCase() + status.slice(1).replace('-', '')}${isDark ? 'Dark' : ''}`]}`}
+              style={{ 
+                position: 'static',
+                margin: '0'
+              }}
+            >
               {getStatusLabel(status)}
             </div>
           </div>

@@ -20,13 +20,12 @@ const sampleProjects: ProjectCardProps[] = [
       { name: 'Express', color: 'var(--pc-tag-bg,rgb(233, 179, 179))', icon: '🚀' }
     ],
     links: [
-      { type: 'demo', url: 'https://ecommerce-demo.com', label: 'Live Demo' },
-      { type: 'repo', url: 'https://github.com/user/ecommerce', label: 'Repository' }
+      { type: 'demo', url: 'https://alisafari-it.github.io/project-card/', label: 'Live Demo' }
     ],
     repo: {
       type: 'repo',
       url: 'https://github.com/user/ecommerce',
-      label: 'Repository',
+      label: 'E-commerce Repository',
       icon: '🐙'
     },
     currentTheme: 'dark',
@@ -55,21 +54,21 @@ const sampleProjects: ProjectCardProps[] = [
     updatedBy: 'Jane Smith',
     lastUpdated: '2024-01-20',
     relatedProjects: [
-      { 
-        title: 'Payment Gateway', 
+      {
+        title: 'Payment Gateway',
         description: 'Integrated payment processing system with Stripe integration, secure transactions, and real-time payment tracking',
-       image: {
-        src: 'https://picsum.photos/400/200?random=1',
-        alt: 'Payment Gateway'
-       },
-        link: { type: 'demo', url: 'https://payment-gateway-demo.com', label: 'Live Demo', icon: '📦' },
-        repo: { type: 'repo', url: 'https://github.com/user/payment-gateway', label: 'Repository', icon: '🐙' }       
+        image: {
+          src: 'https://picsum.photos/400/200?random=1',
+          alt: 'Payment Gateway'
+        },
+        link: { type: 'demo', url: 'https://alisafari-it.github.io/project-card/', label: 'Live Demo', icon: '📦' },
+        repo: { type: 'repo', url: 'https://github.com/user/payment-gateway', label: 'Repository', icon: '🐙' }
       },
-      { 
-        title: 'Inventory System', 
+      {
+        title: 'Inventory System',
         description: 'Real-time inventory management with barcode scanning, low stock alerts, and automated reordering',
-        link: { type: 'demo', url: 'https://inventory-system-demo.com', label: 'Live Demo', icon: '📦' },
-        repo: { type: 'repo', url: 'https://github.com/user/inventory-system', label: 'Repository', icon: '🐙' },
+        link: { type: 'demo', url: 'https://alisafari-it.github.io/project-card/', label: 'Live Demo', icon: '📦' },
+        repo: { type: 'repo', url: 'https://github.com/user/inventory-system', label: 'IS Repository', icon: '🐙' },
         image: {
           src: 'https://picsum.photos/400/200?random=2',
           alt: 'Inventory System'
@@ -92,7 +91,7 @@ const sampleProjects: ProjectCardProps[] = [
       { name: 'TypeScript', color: 'rgb(158, 236, 190)', icon: '📘' }
     ],
     links: [
-      { type: 'demo', url: 'https://ai-chat-demo.com', label: 'Live Demo' },
+      { type: 'demo', url: 'https://alisafari-it.github.io/project-card/', label: 'Live Demo' },
       { type: 'documentation', url: 'https://docs.ai-chat.com', label: 'Documentation' }
     ],
     repo: {
@@ -184,7 +183,7 @@ const sampleProjects: ProjectCardProps[] = [
       { name: 'CSS3', color: '#1572B6', icon: '🎨' }
     ],
     links: [
-      { type: 'demo', url: 'https://portfolio-demo.com', label: 'Live Demo' }
+      { type: 'demo', url: 'https://alisafari-it.github.io/project-card/', label: 'Live Demo' }
     ],
     repo: {
       type: 'repo',
@@ -272,7 +271,7 @@ const sampleProjects: ProjectCardProps[] = [
     ],
     repo: {
       type: 'repo',
-      url: 'https://github.com/user/blockchain-wallet',
+      url: 'https://alisafari-it.github.io/project-card/',
       label: 'Repository',
       icon: '🐙'
     },
@@ -309,7 +308,7 @@ const sampleProjects: ProjectCardProps[] = [
       { name: 'Firebase', color: 'rgb(240, 227, 46)', icon: '🔥' }
     ],
     links: [
-      { type: 'demo', url: 'https://fitness-app-demo.com', label: 'Demo' }
+      { type: 'demo', url: 'https://alisafari-it.github.io/project-card/', label: 'Demo' }
     ],
     repo: {
       type: 'repo',
@@ -355,7 +354,7 @@ const sampleProjects: ProjectCardProps[] = [
       { name: 'Prometheus', color: '#E6522C', icon: '📊' }
     ],
     links: [
-      { type: 'demo', url: 'https://devops-demo.com', label: 'Demo' },
+      { type: 'demo', url: 'https://alisafari-it.github.io/project-card/', label: 'Demo' },
       { type: 'documentation', url: 'https://docs.devops.com', label: 'Documentation' }
     ],
     repo: {

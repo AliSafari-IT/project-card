@@ -1,23 +1,24 @@
-export { ProjectCard } from './components/ProjectCard';
+export { ProjectCard } from "./components/ProjectCard";
 
-export type { 
-  ProjectCardProps, 
-  TechStackItem, 
-  ProjectLink, 
+export type {
+  ProjectCardProps,
+  TechStackItem,
+  ProjectLink,
   RelatedProject,
   ProjectStatus,
   ProjectCategory,
-  Theme, 
+  ProjectPriority,
+  Theme,
   ProjectImage,
-  ProjectTag
-} from './types';
+  ProjectTag,
+} from "./types";
 
 export {
   mapProject,
   mapProjects,
   filterPublicProjects,
-  sortProjects
-} from './utils/projectMapper';
+  sortProjects,
+} from "./utils/projectMapper";
 
 export {
   applyProjectCardTheme,
@@ -26,7 +27,7 @@ export {
   createProjectCardThemeContext,
   applyCustomProjectCardTheme,
   removeCustomProjectCardTheme,
-  PROJECT_CARD_THEME_VARIABLES
-} from './utils/themeUtils';
+  PROJECT_CARD_THEME_VARIABLES,
+} from "./utils/themeUtils";
 
-export type { ProjectCardTheme } from './utils/themeUtils';
+export type { ProjectCardTheme } from "./utils/themeUtils";

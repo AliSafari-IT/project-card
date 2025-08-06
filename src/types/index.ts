@@ -53,6 +53,8 @@ export interface ProjectBudget {
 
 export type ProjectCategory = 'web' | 'mobile' | 'desktop' | 'backend' | 'frontend' | 'fullstack' | 'database' | 'devops' | 'design' | 'marketing' | 'seo' | 'social' | 'content' | 'analytics' | 'security' | 'testing' | 'other';
 
+export type ProjectPriority = 'low' | 'medium' | 'high' | 'critical' | 'urgent';
+
 export interface ProjectCardProps {
   // Core properties
   title: string;
@@ -78,7 +80,7 @@ export interface ProjectCardProps {
   lastUpdated?: string;
   
   // Additional properties from your DB model
-  priority?: 'low' | 'medium' | 'high' | 'critical';
+  priority?: ProjectPriority;
   category?: ProjectCategory;
   progress?: number;
   tags?: ProjectTag[];

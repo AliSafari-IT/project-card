@@ -4,6 +4,9 @@ export type {
   ProjectCardProps, 
   TechStackItem, 
   ProjectLink, 
+  RelatedProject,
+  ProjectStatus,
+  ProjectCategory,
   Theme, 
   ProjectImage,
   ProjectTag

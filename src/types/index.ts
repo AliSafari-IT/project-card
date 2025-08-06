@@ -26,6 +26,8 @@ export interface RelatedProject {
   link?: ProjectLink;
 }
 
+export type ProjectStatus = 'active' | 'draft' | 'archived' | 'completed' | 'in-progress' | 'coming-soon' | 'planning' ;
+
 export type Theme = 'light' | 'dark' | 'auto';
 
 export interface ProjectImage {
@@ -49,6 +51,8 @@ export interface ProjectBudget {
   currencyFormatOptions?: Intl.NumberFormatOptions;
 }
 
+export type ProjectCategory = 'web' | 'mobile' | 'desktop' | 'backend' | 'frontend' | 'fullstack' | 'database' | 'devops' | 'design' | 'marketing' | 'seo' | 'social' | 'content' | 'analytics' | 'security' | 'testing' | 'other';
+
 export interface ProjectCardProps {
   // Core properties
   title: string;
@@ -70,12 +74,12 @@ export interface ProjectCardProps {
   isLoading?: boolean;
   
   // Status and metadata
-  status?: 'active' | 'draft' | 'archived' | 'completed' | 'in-progress' | 'coming-soon' | 'planning' ;
+  status?: ProjectStatus;
   lastUpdated?: string;
   
   // Additional properties from your DB model
   priority?: 'low' | 'medium' | 'high' | 'critical';
-  category?: 'web' | 'mobile' | 'desktop' | 'backend' | 'frontend' | 'fullstack' | 'database' | 'devops' | 'design' | 'marketing' | 'seo' | 'social' | 'content' | 'analytics' | 'security' | 'testing' | 'other';
+  category?: ProjectCategory;
   progress?: number;
   tags?: ProjectTag[];
   startDate?: string;

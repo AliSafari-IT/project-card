@@ -20,13 +20,17 @@ export function ImprovedProjectCardExample() {
     ],
     links: [
       { type: "demo", url: "https://ecommerce-demo.com", label: "Live Demo" },
-      { type: "repo", url: "https://github.com/user/ecommerce" }
+      { type: "repo", url: "https://github.com/user/ecommerce", label: "E-commerce Repository" }
     ],
     status: "active",
-    featured: true,
-    priority: "High",
+    isFeatured: true,
+    priority: "high",
     progress: 75,
-    tags: ["React", "Node.js", "MongoDB", "E-commerce"],
+    tags: [
+      { name: "react", navigateTo: "https://reactjs.org" },
+      { name: "node.js", navigateTo: "https://nodejs.org" },
+      { name: "mongodb", onClick: () => alert("MongoDB clicked") }
+    ],
     startDate: "2024-01-15",
     dueDate: "2024-03-15",
     budget: 5000,
@@ -72,17 +76,20 @@ export function MultipleProjectsExample() {
       title: "Active Project",
       description: "This is an active project with high priority and good progress.",
       status: "active",
-      priority: "High",
+      priority: "high",
       progress: 75,
-      tags: ["React", "TypeScript"],
-      featured: true,
+      tags: [
+        { name: "react" },
+        { name: "typescript" }
+      ],
+      isFeatured: true,
       techStacks: [
-        { name: "React", color: "#61dafb", icon: "⚛️" },
+        { name: "react", color: "#61dafb", icon: "⚛️" },
         { name: "TypeScript", color: "#3178c6", icon: "📘" }
       ],
       links: [
-        { type: "demo", url: "https://demo.com" },
-        { type: "repo", url: "https://github.com/user/repo" }
+        { type: "demo", url: "https://demo.com", label: "Demo" },
+        { type: "repo", url: "https://github.com/user/repo", label: "Repository" }
       ]
     },
     {
@@ -90,15 +97,18 @@ export function MultipleProjectsExample() {
       title: "In Progress Project",
       description: "This project is currently in progress with medium priority.",
       status: "in-progress",
-      priority: "Medium",
+      priority: "medium",
       progress: 45,
-      tags: ["Vue.js", "Firebase"],
+      tags: [
+        { name: "vue.js" },
+        { name: "firebase" }
+      ],
       techStacks: [
-        { name: "Vue.js", color: "#42b883", icon: "💚" },
-        { name: "Firebase", color: "#FFCA28", icon: "🔥" }
+        { name: "vue.js", color: "#42b883", icon: "💚" },
+        { name: "firebase", color: "#FFCA28", icon: "🔥" }
       ],
       links: [
-        { type: "repo", url: "https://github.com/user/vue-project" }
+        { type: "repo", url: "https://github.com/user/vue-project", label: "Repository" }
       ]
     },
     {
@@ -106,13 +116,18 @@ export function MultipleProjectsExample() {
       title: "Planning Project",
       description: "This project is in the planning phase with low priority.",
       status: "planning",
-      priority: "Low",
+      priority: "low",
       progress: 10,
-      tags: ["Planning", "Research"],
+      tags: [
+        { name: "Planning" },
+        { name: "Research" }
+      ],
       techStacks: [
         { name: "Next.js", color: "#000000", icon: "▲" }
       ],
-      links: []
+      links: [
+        { type: "repo", url: "https://github.com/user/vue-project", label: "Repository" }
+      ]
     }
   ];
 

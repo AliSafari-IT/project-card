@@ -1,21 +1,28 @@
 import React, { useState, useEffect } from 'react';
 import { 
   ProjectCard, 
-  ProjectFromDB, 
-  mapProjectsFromDB, 
+
+  ProjectCardProps, 
+
   filterPublicProjects, 
   sortProjects 
 } from '@asafarim/project-card';
 
 // Example API call function
-async function fetchProjects(): Promise<ProjectFromDB[]> {
-  const response = await fetch('/api/projects');
-  return response.json();
+async function fetchProjects(): Promise<ProjectCardProps[]> {
+  try {
+    const response = await fetch('/api/projects');
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error('Failed to load projects:', error);
+    return exampleApiResponse;
+  }
 }
 
 // Example component using database data
 export function ProjectsPage() {
-  const [projects, setProjects] = useState<ProjectFromDB[]>([]);
+  const [projects, setProjects] = useState<ProjectCardProps[]>([]);
   const [loading, setLoading] = useState(true);
   const [theme, setTheme] = useState<'light' | 'dark'>('light');
 
@@ -49,7 +56,7 @@ export function ProjectsPage() {
   }
 
   // Map database projects to ProjectCard format
-  const projectCards = mapProjectsFromDB(projects);
+  const projectCards = projects;
 
   return (
     <div className={`projects-page ${theme === 'dark' ? 'dark-theme' : ''}`}>
@@ -76,18 +83,27 @@ export function ProjectsPage() {
 }
 
 // Example of how your API response might look
-const exampleApiResponse: ProjectFromDB[] = [
+const exampleApiResponse: ProjectCardProps[] = [
   {
     id: "1",
     title: "E-commerce Platform",
     description: "A full-stack e-commerce platform with user authentication, shopping cart, and payment integration.",
-    status: "Active",
-    priority: "High",
+    status: "active",
+    priority: "high",
     progress: 75,
-    tags: ["React", "Node.js", "MongoDB"],
-    thumbnailUrl: "https://picsum.photos/400/200?random=1",
-    repositoryUrl: "https://github.com/user/ecommerce",
-    liveUrl: "https://ecommerce-demo.com",
+    tags: [
+      { name: "react" },
+      { name: "node.js" },
+      { name: "mongodb" }
+    ],
+    image: {
+      src: "https://picsum.photos/400/200?random=1",
+      alt: "E-commerce Platform"
+    },
+    links: [
+      { type: "demo", url: "https://ecommerce-demo.com", label: "Live Demo" },
+      { type: "repo", url: "https://github.com/user/ecommerce", label: "E-commerce Repository" }
+    ],
     isPublic: true,
     isFeatured: true,
     userId: "user-123",
@@ -103,12 +119,22 @@ const exampleApiResponse: ProjectFromDB[] = [
     id: "2",
     title: "Task Management App",
     description: "A collaborative task management application with real-time updates.",
-    status: "In Progress",
-    priority: "Medium",
+    status: "in-progress",
+    priority: "medium",
     progress: 45,
-    tags: ["React", "Firebase", "Material-UI"],
-    thumbnailUrl: "https://picsum.photos/400/200?random=2",
-    repositoryUrl: "https://github.com/user/task-app",
+    tags: [
+      { name: "react" },
+      { name: "firebase" },
+      { name: "material-ui" }
+    ],
+    image: {
+      src: "https://picsum.photos/400/200?random=2",
+      alt: "Task Management App"
+    },
+    links: [
+      { type: "demo", url: "https://task-app-demo.com", label: "Live Demo" },
+      { type: "repo", url: "https://github.com/user/task-app", label: "Task App Repository" }
+    ],
     isPublic: true,
     isFeatured: false,
     userId: "user-123",

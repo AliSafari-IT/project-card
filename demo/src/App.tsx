@@ -392,11 +392,24 @@ const sampleProjects: ProjectCardProps[] = [
 
 function App() {
   const [theme, setTheme] = useState<'light' | 'dark'>(() => {
-    const stored = typeof window !== 'undefined' ? localStorage.getItem('pc_theme') : null;
+    const stored = typeof window !== 'undefined' ? localStorage.getItem('asafarim_pc_theme') : null;
     return (stored === 'dark' || stored === 'light') ? (stored as 'light' | 'dark') : 'light';
   });
   const [showLoadingDemo, setShowLoadingDemo] = useState(false);
   const [route, setRoute] = useState<string>('home');
+
+  // Keep CSS variables in sync with theme for ProjectCard
+  useEffect(() => {
+    try {
+      const root = document.documentElement;
+      if (theme === 'dark') {
+        root.setAttribute('data-theme', 'dark');
+      } else {
+        root.removeAttribute('data-theme');
+      }
+      localStorage.setItem('asafarim_pc_theme', theme);
+    } catch {}
+  }, [theme]);
 
   const toggleTheme = () => {
     setTheme(theme === 'light' ? 'dark' : 'light');
@@ -405,7 +418,7 @@ function App() {
   // persist theme across routes/reloads
   useEffect(() => {
     try {
-      localStorage.setItem('pc_theme', theme);
+      localStorage.setItem('asafarim_pc_theme', theme);
     } catch {}
   }, [theme]);
 
@@ -464,8 +477,8 @@ function App() {
           <button className={`nav-btn ${isActive('multiple') ? 'active' : ''}`} onClick={() => navigate('multiple')}>
             MultipleProjectsExample
           </button>
-          <button className="nav-btn" onClick={toggleTheme}>
-            Theme: {theme === 'light' ? 'Light' : 'Dark'}
+          <button className="nav-btn" onClick={toggleTheme} title={"Toggle " + (theme === 'dark' ? 'Light' : 'Dark')}>
+            {theme === 'dark' ? '🌙' : '🌞'}
           </button>
         </div>
       </nav>

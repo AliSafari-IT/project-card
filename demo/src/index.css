@@ -61,6 +61,45 @@ body {
   margin-bottom: 2rem;
 }
 
+/* Shared layout for example/demo pages */
+.example-container,
+.projects-page {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1.25rem 1rem 2rem;
+}
+
+/* Responsive project grid used by examples */
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 1.5rem;
+  align-items: stretch;
+}
+
+/* Navbar buttons */
+.nav-btn {
+  background: #ffffff;
+  color: #1a202c;
+  border: 1px solid #e2e8f0;
+  padding: 0.5rem 0.9rem;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.nav-btn:hover {
+  background: #f1f5f9;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.06);
+}
+
+.nav-btn.active {
+  background: #1e293b;
+  color: #ffffff;
+  border-color: #1e293b;
+}
+
 .demo-single {
   display: flex;
   justify-content: center;
@@ -186,6 +225,28 @@ body {
   color: #a0aec0;
 }
 
+/* Dark theme variants for new elements */
+.dark-theme .nav-btn {
+  background: #111827;
+  color: #e5e7eb;
+  border-color: #374151;
+}
+
+.dark-theme .nav-btn:hover {
+  background: #0b1220;
+}
+
+.dark-theme .nav-btn.active {
+  background: #2563eb;
+  border-color: #2563eb;
+  color: #ffffff;
+}
+
+.dark-theme .projects-page,
+.dark-theme .example-container {
+  background: transparent;
+}
+
 .dark-theme .status-item {
   background: #2d3748;
   border-color: #4a5568;
@@ -219,5 +280,10 @@ body {
   
   .demo-grid {
     grid-template-columns: 1fr;
+  }
+
+  .projects-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
   }
 }

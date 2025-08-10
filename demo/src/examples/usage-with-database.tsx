@@ -21,10 +21,11 @@ async function fetchProjects(): Promise<ProjectCardProps[]> {
 }
 
 // Example component using database data
-export function ProjectsPage() {
+export function ProjectsPage({ theme: externalTheme, hideLocalToggle }: { theme?: 'light' | 'dark'; hideLocalToggle?: boolean }) {
   const [projects, setProjects] = useState<ProjectCardProps[]>([]);
   const [loading, setLoading] = useState(true);
   const [theme, setTheme] = useState<'light' | 'dark'>('light');
+  const effectiveTheme = externalTheme ?? theme;
 
   useEffect(() => {
     async function loadProjects() {
@@ -59,19 +60,21 @@ export function ProjectsPage() {
   const projectCards = projects;
 
   return (
-    <div className={`projects-page ${theme === 'dark' ? 'dark-theme' : ''}`}>
-      <div className="theme-toggle">
-        <button onClick={() => setTheme(theme === 'light' ? 'dark' : 'light')}>
-          Switch to {theme === 'light' ? 'Dark' : 'Light'} Theme
-        </button>
-      </div>
+    <div className={`projects-page ${effectiveTheme === 'dark' ? 'dark-theme' : ''}`}>
+      {!hideLocalToggle && externalTheme === undefined && (
+        <div className="theme-toggle">
+          <button onClick={() => setTheme(theme === 'light' ? 'dark' : 'light')}>
+            Switch to {theme === 'light' ? 'Dark' : 'Light'} Theme
+          </button>
+        </div>
+      )}
 
       <div className="projects-grid">
         {projectCards.map((project) => (
           <ProjectCard
             key={project.id}
             {...project}
-            currentTheme={theme}
+            currentTheme={effectiveTheme}
             showTechStackIcons={true}
             maxDescriptionLength={150}
             onCardClick={() => handleCardClick(project.id!)}

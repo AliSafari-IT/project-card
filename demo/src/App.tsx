@@ -1,8 +1,10 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { ProjectCard } from '@asafarim/project-card';
 import { DisplayCode } from '@asafarim/display-code';
 import type { ProjectCardProps } from '@asafarim/project-card';
 import { PackageLinks } from '@asafarim/shared';
+import { ProjectsPage } from './examples/usage-with-database';
+import { ImprovedProjectCardExample, MultipleProjectsExample } from './examples/improved-usage';
 
 const sampleProjects: ProjectCardProps[] = [
   {
@@ -389,29 +391,110 @@ const sampleProjects: ProjectCardProps[] = [
 ];
 
 function App() {
-  const [theme, setTheme] = useState<'light' | 'dark'>('light');
+  const [theme, setTheme] = useState<'light' | 'dark'>(() => {
+    const stored = typeof window !== 'undefined' ? localStorage.getItem('pc_theme') : null;
+    return (stored === 'dark' || stored === 'light') ? (stored as 'light' | 'dark') : 'light';
+  });
   const [showLoadingDemo, setShowLoadingDemo] = useState(false);
+  const [route, setRoute] = useState<string>('home');
 
   const toggleTheme = () => {
     setTheme(theme === 'light' ? 'dark' : 'light');
   };
 
+  // persist theme across routes/reloads
+  useEffect(() => {
+    try {
+      localStorage.setItem('pc_theme', theme);
+    } catch {}
+  }, [theme]);
+
   const handleCardClick = (title: string) => {
     alert(`Clicked on: ${title}`);
   };
 
+  // Simple hash-based routing (no external deps)
+  // Supported routes: #/home, #/projects, #/improved, #/multiple
+  useEffect(() => {
+    const applyHash = () => {
+      const hash = window.location.hash.replace('#/', '').trim();
+      setRoute(hash || 'home');
+    };
+    applyHash();
+    window.addEventListener('hashchange', applyHash);
+    return () => window.removeEventListener('hashchange', applyHash);
+  }, []);
+
+  const navigate = (path: string) => {
+    window.location.hash = `/${path}`;
+  };
+  const isActive = (path: string) => route === path;
+
   return (
     <div className={`demo-container ${theme === 'dark' ? 'dark-theme' : ''}`}>
+      {/* Simple Navbar */}
+      <nav
+        style={{
+          display: 'flex',
+          gap: '0.75rem',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+          padding: '0.75rem 1rem',
+          borderBottom: '1px solid #e2e8f0',
+          position: 'sticky',
+          top: 0,
+          background: theme === 'dark' ? '#0f172a' : '#ffffff',
+          zIndex: 10,
+        }}
+      >
+        <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
+          <strong>@asafarim/project-card</strong>
+          <span style={{ opacity: 0.6 }}>Demo</span>
+        </div>
+        <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap', alignItems: 'center' }}>
+          <button className={`nav-btn ${isActive('home') ? 'active' : ''}`} onClick={() => navigate('home')}>
+            Home
+          </button>
+          <button className={`nav-btn ${isActive('projects') ? 'active' : ''}`} onClick={() => navigate('projects')}>
+            ProjectsPage
+          </button>
+          <button className={`nav-btn ${isActive('improved') ? 'active' : ''}`} onClick={() => navigate('improved')}>
+            ImprovedProjectCardExample
+          </button>
+          <button className={`nav-btn ${isActive('multiple') ? 'active' : ''}`} onClick={() => navigate('multiple')}>
+            MultipleProjectsExample
+          </button>
+          <button className="nav-btn" onClick={toggleTheme}>
+            Theme: {theme === 'light' ? 'Light' : 'Dark'}
+          </button>
+        </div>
+      </nav>
+
+      {/* Route Views */}
+      {route === 'projects' && (
+        <div style={{ paddingTop: '1rem' }}>
+          <ProjectsPage theme={theme} hideLocalToggle={true} />
+        </div>
+      )}
+
+      {route === 'improved' && (
+        <div style={{ paddingTop: '1rem' }}>
+          <ImprovedProjectCardExample theme={theme} hideLocalToggle={true} />
+        </div>
+      )}
+
+      {route === 'multiple' && (
+        <div style={{ paddingTop: '1rem' }}>
+          <MultipleProjectsExample theme={theme} hideLocalToggle={true} />
+        </div>
+      )}
+
+      {(route === 'home') && (
+        <>
       <div className="demo-header">
         <h1>@asafarim/project-card</h1>
         <p>A powerful and flexible React component for displaying project cards</p>
         <PackageLinks packageName="@asafarim/project-card" githubPath="project-card" demoPath="project-card" />
-
-        <div className="theme-toggle">
-          <button onClick={toggleTheme}>
-            Switch to {theme === 'light' ? 'Dark' : 'Light'} Theme
-          </button>
-        </div>
       </div>
 
       <div className="demo-section">
@@ -854,6 +937,8 @@ const projectProps: ProjectCardProps = {
           Built with ❤️ using the package <a href="https://github.com/AliSafari-IT/project-card">@asafarim/project-card</a> by Ali Safari
         </p>
       </div>
+        </>
+      )}
     </div>
   );
 }

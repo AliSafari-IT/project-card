@@ -2,8 +2,9 @@ import React, { useState } from 'react';
 import { ProjectCard, ProjectCardProps } from '@asafarim/project-card';
 
 // Example of using the improved ProjectCard with database properties
-export function ImprovedProjectCardExample() {
+export function ImprovedProjectCardExample({ theme: externalTheme, hideLocalToggle }: { theme?: 'light' | 'dark'; hideLocalToggle?: boolean }) {
   const [theme, setTheme] = useState<'light' | 'dark'>('light');
+  const effectiveTheme = externalTheme ?? theme;
 
   const sampleProject: ProjectCardProps = {
     id: "1",
@@ -43,12 +44,14 @@ export function ImprovedProjectCardExample() {
   };
 
   return (
-    <div className={`example-container ${theme === 'dark' ? 'dark-theme' : ''}`}>
-      <div className="theme-toggle">
-        <button onClick={() => setTheme(theme === 'light' ? 'dark' : 'light')}>
-          Switch to {theme === 'light' ? 'Dark' : 'Light'} Theme
-        </button>
-      </div>
+    <div className={`example-container ${effectiveTheme === 'dark' ? 'dark-theme' : ''}`}>
+      {!hideLocalToggle && externalTheme === undefined && (
+        <div className="theme-toggle">
+          <button onClick={() => setTheme(theme === 'light' ? 'dark' : 'light')}>
+            Switch to {theme === 'light' ? 'Dark' : 'Light'} Theme
+          </button>
+        </div>
+      )}
 
       <div className="project-card-demo">
         <h2>Improved ProjectCard with Database Properties</h2>
@@ -56,7 +59,7 @@ export function ImprovedProjectCardExample() {
         
         <ProjectCard
           {...sampleProject}
-          currentTheme={theme}
+          currentTheme={effectiveTheme}
           showTechStackIcons={true}
           maxDescriptionLength={150}
           onCardClick={handleCardClick}
@@ -67,8 +70,9 @@ export function ImprovedProjectCardExample() {
 }
 
 // Example with multiple projects showing different statuses
-export function MultipleProjectsExample() {
+export function MultipleProjectsExample({ theme: externalTheme, hideLocalToggle }: { theme?: 'light' | 'dark'; hideLocalToggle?: boolean }) {
   const [theme, setTheme] = useState<'light' | 'dark'>('light');
+  const effectiveTheme = externalTheme ?? theme;
 
   const projects: ProjectCardProps[] = [
     {
@@ -132,19 +136,21 @@ export function MultipleProjectsExample() {
   ];
 
   return (
-    <div className={`example-container ${theme === 'dark' ? 'dark-theme' : ''}`}>
-      <div className="theme-toggle">
-        <button onClick={() => setTheme(theme === 'light' ? 'dark' : 'light')}>
-          Switch to {theme === 'light' ? 'Dark' : 'Light'} Theme
-        </button>
-      </div>
+    <div className={`example-container ${effectiveTheme === 'dark' ? 'dark-theme' : ''}`}>
+      {!hideLocalToggle && externalTheme === undefined && (
+        <div className="theme-toggle">
+          <button onClick={() => setTheme(theme === 'light' ? 'dark' : 'light')}>
+            Switch to {theme === 'light' ? 'Dark' : 'Light'} Theme
+          </button>
+        </div>
+      )}
 
       <div className="projects-grid">
         {projects.map((project) => (
           <ProjectCard
             key={project.id}
             {...project}
-            currentTheme={theme}
+            currentTheme={effectiveTheme}
             showTechStackIcons={true}
             maxDescriptionLength={120}
             onCardClick={() => console.log('Clicked:', project.id)}
@@ -153,4 +159,4 @@ export function MultipleProjectsExample() {
       </div>
     </div>
   );
-} 
+}

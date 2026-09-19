@@ -58,23 +58,25 @@ app in `demo/` (consumes the lib via `link:..`, plus `@asafarim/display-code`,
 - `files` ships `dist`, `demo`, and `README.md` — **the demo dir goes in the
   npm tarball**; keep it clean (demo/dist is gitignored, so it won't ship)
 - Keep `version` in `package.json` and `demo/package.json` in sync — both are
-  bumped together (currently 1.5.0)
+  bumped together (currently 1.5.1)
 
 ## Release
 
-**No publish workflow exists** — npm releases are manual. The only CI is the
-demo Pages deploy:
+Publish trigger is **push to `main`/`master` with a version bump** — NOT tags:
 
 1. Bump `version` in `package.json` **and** `demo/package.json` (semver)
 2. `pnpm run build` and `cd demo && pnpm build` green
-3. `pnpm publish` (or `npm publish`) — `prepare` rebuilds automatically
-4. Commit → push `main`
+3. Commit → push `main`
+4. `.github/workflows/publish.yml` compares the version to npm and publishes
+   only if it differs; before publishing it pins relative README image paths
+   (`demo/src/public/`, `demo/public/`) to the release commit SHA via sed —
+   same convention as the sibling repo
 5. `.github/workflows/static_demo.yml` deploys `demo/dist` to GitHub Pages via
-   `actions/deploy-pages` — but **only when `demo/**` changes on `main`** (or
-   via `workflow_dispatch`); it copies `index.html` → `404.html` so
-   BrowserRouter routes survive a refresh on Pages
-6. Manual Pages deploy: `pnpm run deploy` (`predeploy` builds lib + demo, then
-   `gh-pages -d demo/dist` pushes the `gh-pages` branch)
+   `actions/deploy-pages` — but **only when `demo/**` or the workflow file
+   changes on `main`** (or via `workflow_dispatch`); it copies `index.html` →
+   `404.html` so BrowserRouter routes survive a refresh on Pages
+6. Manual fallbacks: `pnpm publish` locally (`prepare` rebuilds), and
+   `pnpm run deploy` for a manual `gh-pages` branch deploy
 7. Optionally `gh release create v{x.y.z} -R AliSafari-IT/project-card --latest`
 
 ## Gotchas
@@ -95,6 +97,10 @@ demo Pages deploy:
   `package-lock.json` alongside `pnpm-lock.yaml`; prefer the pnpm scripts
 - Demo has its own `demo/pnpm-lock.yaml` and a `link:..` dep on the lib —
   `pnpm i` at root doesn't fully set up the demo; the workflow installs both
-- CI pins pnpm 8 via `pnpm/action-setup@v2` while local `packageManager` is
-  pnpm 10.14.0 — lockfile-format warnings in CI are expected
+- Both workflows use `pnpm/action-setup@v4` without a pinned version — it reads
+  `packageManager` (pnpm 10.14.0). **Do not pin pnpm 8**: it can't read
+  `lockfileVersion: 9`, silently ignores the lockfiles, and resolves fresh
+  deps that break the rollup build during `prepare`
+- `secrets.NPM_TOKEN` is configured — `publish.yml` publishes on version-bump
+  pushes; without the secret the publish step fails
 - npm website lags the registry — verify publishes via `npm view ... dist-tags`

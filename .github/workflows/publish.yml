@@ -1,0 +1,70 @@
+name: Publish Package to npm
+
+on:
+  push:
+    branches: [main, master]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          run_install: false
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          registry-url: "https://registry.npmjs.org"
+
+      - name: Install dependencies
+        run: pnpm install --no-frozen-lockfile
+
+      - name: Build package
+        run: pnpm build
+
+      - name: Check if version changed
+        id: version-check
+        run: |
+          PACKAGE_VERSION=$(node -p "require('./package.json').version")
+          PUBLISHED_VERSION=$(npm view @asafarim/project-card version 2>/dev/null || echo "none")
+
+          echo "Package version: $PACKAGE_VERSION"
+          echo "Published version: $PUBLISHED_VERSION"
+
+          if [ "$PACKAGE_VERSION" = "$PUBLISHED_VERSION" ]; then
+            echo "Version unchanged, skipping publish"
+            echo "should_publish=false" >> $GITHUB_OUTPUT
+          else
+            echo "Version changed, will publish"
+            echo "should_publish=true" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Pin README images to this commit
+        if: steps.version-check.outputs.should_publish == 'true'
+        run: |
+          COMMIT_SHA="${{ github.sha }}"
+          RAW_BASE="https://raw.githubusercontent.com/AliSafari-IT/project-card/${COMMIT_SHA}"
+
+          # Replace relative image paths with absolute URLs pinned to this commit
+          sed -i "s|](demo/src/public/|](${RAW_BASE}/demo/src/public/|g" README.md
+          sed -i "s|](demo/public/|](${RAW_BASE}/demo/public/|g" README.md
+
+          echo "README images pinned to commit ${COMMIT_SHA}"
+          echo "--- First 10 lines of README ---"
+          head -10 README.md
+
+      - name: Publish to npm
+        if: steps.version-check.outputs.should_publish == 'true'
+        run: pnpm publish --no-git-checks --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}

@@ -2,7 +2,7 @@
 
 A comprehensive React component for displaying project cards with advanced features including theme support, database integration, progress tracking, and interactive elements.
 
-![ProjectCard Demo](demo/src/public/project-card.png)
+![ProjectCard Demo](https://raw.githubusercontent.com/AliSafari-IT/project-card/7ec92d744b76816063e3de1e8ab63eb4a3bd5db0/demo/src/public/project-card.png)
 
 ## 🚀 Demo
 

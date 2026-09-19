@@ -8,7 +8,7 @@
     "cleanInstall": "rm -rf node_modules && pnpm i && pnpm run build",
     "dev": "vite",
     "predev": "npx kill-port 3008",
-    "build": "vite build",
+    "build": "tsc && vite build",
     "all": "pnpm i && pnpm run build",
     "preview": "vite preview",
     "gp": "gh-pages -d dist",
@@ -17,11 +17,13 @@
   "dependencies": {
     "@asafarim/display-code": "^1.0.1",
     "@asafarim/project-card": "link:..",
-    "@asafarim/shared": "^1.0.3",
+    "@asafarim/shared": "^1.7.3",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^7.18.3"
   },
   "devDependencies": {
+    "@asafarim/react-themes": "^1.6.1",
     "@types/react": "^18.2.0",
     "@types/react-dom": "^18.2.0",
     "@vitejs/plugin-react": "^4.0.3",

@@ -1,424 +1,24 @@
 import { useState, useEffect } from 'react';
-import { ProjectCard } from '@asafarim/project-card';
+import { Routes, Route } from 'react-router-dom';
+import { ProjectCard, applyProjectCardTheme } from '@asafarim/project-card';
 import { DisplayCode } from '@asafarim/display-code';
-import type { ProjectCardProps } from '@asafarim/project-card';
 import { PackageLinks } from '@asafarim/shared';
-import { ProjectsPage } from './examples/usage-with-database';
-import { ImprovedProjectCardExample, MultipleProjectsExample } from './examples/improved-usage';
+import { useTheme } from '@asafarim/react-themes';
+import { SiteNav } from './SiteNav';
+import { RoadmapPage } from './RoadmapPage';
+import { HowToPage } from './HowToPage';
+import { ExamplesPage } from './ExamplesPage';
+import { sampleProjects } from './mockData';
 
-const sampleProjects: ProjectCardProps[] = [
-  {
-    id: '1',
-    title: 'E-commerce Platform',
-    description: 'A full-stack e-commerce platform with user authentication, shopping cart, and payment integration using React and Node.js. Features include product catalog, user reviews, order management, and real-time inventory tracking.',
-    image: {
-      src: 'https://picsum.photos/400/200?random=1',
-      alt: 'E-commerce Platform'
-    },
-    techStacks: [
-      { name: 'React', color: 'var(--pc-tag-bg,rgb(234, 174, 236))', icon: '⚛️' },
-      { name: 'Node.js', color: 'var(--pc-tag-bg,rgb(168, 195, 211))', icon: '🟢' },
-      { name: 'MongoDB', color: 'var(--pc-tag-bg,rgb(212, 209, 155))', icon: '🍃' },
-      { name: 'Express', color: 'var(--pc-tag-bg,rgb(233, 179, 179))', icon: '🚀' }
-    ],
-    links: [
-      { type: 'demo', url: 'https://alisafari-it.github.io/project-card/', label: 'Live Demo' }
-    ],
-    repo: {
-      type: 'repo',
-      url: 'https://github.com/user/ecommerce',
-      label: 'E-commerce Repository',
-      icon: '🐙'
-    },
-    currentTheme: 'dark',
-    status: 'active',
-    isFeatured: true,
-    priority: 'high',
-    category: 'fullstack',
-    progress: 85,
-    tags: [
-      { name: 'E-commerce', onClick: () => alert('E-commerce clicked!') },
-      { name: 'Full-stack', navigateTo: 'https://ecommerce-demo2.com' },
-      { name: 'React', navigateTo: 'https://ecommerce-demo3.com' },
-      { name: 'Node.js', navigateTo: 'https://ecommerce-demo4.com' },
-      { name: 'MongoDB', navigateTo: 'https://ecommerce-demo5.com' }
-    ],
-    startDate: '2024-01-15',
-    dueDate: '2024-03-15',
-    endDate: '2024-03-20',
-    budget: {
-      amount: 15000,
-      currencyCode: 'USD',
-      currencySymbol: '$'
-    },
-    isPublic: true,
-    createdBy: 'John Doe',
-    updatedBy: 'Jane Smith',
-    lastUpdated: '2024-01-20',
-    relatedProjects: [
-      {
-        title: 'Payment Gateway',
-        description: 'Integrated payment processing system with Stripe integration, secure transactions, and real-time payment tracking',
-        image: {
-          src: 'https://picsum.photos/400/200?random=1',
-          alt: 'Payment Gateway'
-        },
-        link: { type: 'demo', url: 'https://alisafari-it.github.io/project-card/', label: 'Live Demo', icon: '📦' },
-        repo: { type: 'repo', url: 'https://github.com/user/payment-gateway', label: 'Repository', icon: '🐙' }
-      },
-      {
-        title: 'Inventory System',
-        description: 'Real-time inventory management with barcode scanning, low stock alerts, and automated reordering',
-        link: { type: 'demo', url: 'https://alisafari-it.github.io/project-card/', label: 'Live Demo', icon: '📦' },
-        repo: { type: 'repo', url: 'https://github.com/user/inventory-system', label: 'IS Repository', icon: '🐙' },
-        image: {
-          src: 'https://picsum.photos/400/200?random=2',
-          alt: 'Inventory System'
-        }
-      }
-    ]
-  },
-  {
-    id: '2',
-    title: 'AI-Powered Chat Application',
-    description: 'A real-time chat application with AI-powered responses, sentiment analysis, and intelligent conversation flow management.',
-    image: {
-      src: 'https://picsum.photos/400/200?random=2',
-      alt: 'AI Chat Application'
-    },
-    techStacks: [
-      { name: 'Next.js', color: 'rgb(207, 160, 209)', icon: '▲' },
-      { name: 'OpenAI', color: 'rgb(231, 227, 169)', icon: '🤖' },
-      { name: 'Socket.io', color: 'rgb(162, 188, 235)', icon: '🔌' },
-      { name: 'TypeScript', color: 'rgb(158, 236, 190)', icon: '📘' }
-    ],
-    links: [
-      { type: 'demo', url: 'https://alisafari-it.github.io/project-card/', label: 'Live Demo' },
-      { type: 'documentation', url: 'https://docs.ai-chat.com', label: 'Documentation' }
-    ],
-    repo: {
-      type: 'repo',
-      url: 'https://github.com/user/ai-chat',
-      label: 'Repository',
-      icon: '🐙'
-    },
-    status: 'in-progress',
-    isFeatured: true,
-    priority: 'critical',
-    category: 'web',
-    progress: 65,
-    tags: [
-      { name: 'AI' },
-      { name: 'Real-time' },
-      { name: 'Chat' },
-      { name: 'Next.js' },
-      { name: 'OpenAI' }
-    ],
-    startDate: '2024-01-10',
-    dueDate: '2024-02-28',
-    budget: {
-      amount: 8000,
-      currencyCode: 'EUR',
-      currencySymbol: '€'
-    },
-    isPublic: true,
-    createdBy: 'Alice Johnson',
-    updatedBy: 'Bob Wilson',
-    lastUpdated: '2024-01-18'
-  },
-  {
-    id: '3',
-    title: 'Task Management App',
-    description: 'A collaborative task management application with real-time updates, drag-and-drop functionality, and team collaboration features.',
-    image: {
-      src: 'https://picsum.photos/400/200?random=3',
-      alt: 'Task Management App'
-    },
-    techStacks: [
-      { name: 'React', color: '#61dafb', icon: '⚛️' },
-      { name: 'Firebase', color: '#FFCA28', icon: '🔥' },
-      { name: 'Material-UI', color: '#0081CB', icon: '🎨' }
-    ],
-    links: [
-      { type: 'demo', url: 'https://task-app-demo.com', label: 'Live Demo' }
-    ],
-    repo: {
-      type: 'repo',
-      url: 'https://github.com/user/task-app',
-      label: 'Repository',
-      icon: '🐙'
-    },
-    status: 'in-progress',
-    isFeatured: false,
-    priority: 'medium',
-    category: 'web',
-    progress: 45,
-    tags: [
-      { name: 'Task Management', navigateTo: 'https://task-app-demo.com' },
-      { name: 'Collaboration', navigateTo: 'https://github.com/user/task-app' },
-      { name: 'Real-time', navigateTo: 'https://task-app-demo.com' },
-      { name: 'Firebase', navigateTo: 'https://task-app-demo.com' }
-    ],
-    startDate: '2024-01-05',
-    dueDate: '2024-04-15',
-    budget: {
-      amount: 5000,
-      currencyCode: 'EUR',
-      currencySymbol: '€'
-    },
-    isPublic: true,
-    createdBy: 'Sarah Chen',
-    updatedBy: 'Mike Davis',
-    lastUpdated: '2024-01-15'
-  },
-  {
-    id: '4',
-    title: 'Portfolio Website',
-    description: 'A modern portfolio website built with React and TypeScript, featuring dark mode, responsive design, and smooth animations.',
-    image: {
-      src: 'https://picsum.photos/400/200?random=4',
-      alt: 'Portfolio Website'
-    },
-    techStacks: [
-      { name: 'React', color: '#61dafb', icon: '⚛️' },
-      { name: 'TypeScript', color: '#3178c6', icon: '📘' },
-      { name: 'CSS3', color: '#1572B6', icon: '🎨' }
-    ],
-    links: [
-      { type: 'demo', url: 'https://alisafari-it.github.io/project-card/', label: 'Live Demo' }
-    ],
-    repo: {
-      type: 'repo',
-      url: 'https://github.com/user/portfolio',
-      label: 'Repository',
-      icon: '🐙'
-    },
-    status: 'completed',
-    isFeatured: false,
-    priority: 'low',
-    category: 'frontend',
-    progress: 100,
-    tags: [
-      { name: 'Portfolio' },
-      { name: 'React' },
-      { name: 'TypeScript' },
-      { name: 'Responsive' }
-    ],
-    startDate: '2023-12-01',
-    endDate: '2024-01-10',
-    budget: {
-      amount: 2000,
-      currencyCode: 'USD',
-      currencySymbol: '$'
-    },
-    isPublic: true,
-    createdBy: 'David Lee',
-    updatedBy: 'David Lee',
-    lastUpdated: '2024-01-10'
-  },
-  {
-    id: '5',
-    title: 'Machine Learning Model',
-    description: 'An advanced machine learning project for image classification using TensorFlow and Python with real-time inference capabilities.',
-    image: 'https://picsum.photos/400/200?random=5',
-    techStacks: [
-      { name: 'Python', color: '#3776ab', icon: '🐍' },
-      { name: 'TensorFlow', color: '#FF6F00', icon: '🧠' },
-      { name: 'Jupyter', color: '#F37626', icon: '📊' },
-      { name: 'Flask', color: 'rgb(207, 160, 209)', icon: '🍶' }
-    ],
-    links: [
-      { type: 'documentation', url: 'https://docs.example.com', label: 'Documentation' }
-    ],
-    repo: {
-      type: 'repo',
-      url: 'https://github.com/user/ml-model',
-      label: 'Repository',
-      icon: '🐙'
-    },
-    status: 'archived',
-    isFeatured: false,
-    priority: 'medium',
-    category: 'backend',
-    progress: 90,
-    tags: [
-      { name: 'Machine Learning' },
-      { name: 'AI' },
-      { name: 'Python' },
-      { name: 'TensorFlow' }
-    ],
-    startDate: '2023-10-01',
-    endDate: '2023-12-01',
-    budget: {
-      amount: 12000,
-      currencyCode: 'GBP',
-      currencySymbol: '£'
-    },
-    isPublic: false,
-    createdBy: 'Dr. Emily Watson',
-    updatedBy: 'Dr. Emily Watson',
-    lastUpdated: '2023-12-01'
-  },
-  {
-    id: '6',
-    title: 'Planning: Blockchain Wallet',
-    description: 'A decentralized wallet application for managing cryptocurrencies with advanced security features and multi-chain support.',
-    techStacks: [
-      { name: 'Solidity', color: 'rgb(207, 160, 209)', icon: '⛓️' },
-      { name: 'Web3.js', color: '#f16822', icon: '🌐' },
-      { name: 'React', color: '#61dafb', icon: '⚛️' }
-    ],
-    links: [
-      { type: 'documentation', url: 'https://docs.wallet.com', label: 'Documentation' }
-    ],
-    repo: {
-      type: 'repo',
-      url: 'https://alisafari-it.github.io/project-card/',
-      label: 'Repository',
-      icon: '🐙'
-    },
-    status: 'planning',
-    isFeatured: false,
-    priority: 'high',
-    category: 'web',
-    progress: 10,
-    tags: [
-      { name: 'Blockchain' },
-      { name: 'Cryptocurrency' },
-      { name: 'Web3' },
-      { name: 'Security' }
-    ],
-    startDate: '2024-02-01',
-    dueDate: '2024-06-30',
-    budget: {
-      amount: 25000,
-      currencyCode: 'CNY',
-      currencySymbol: '¥'
-    },
-    isPublic: true,
-    createdBy: 'Alex Thompson',
-    updatedBy: 'Alex Thompson',
-    lastUpdated: '2024-01-25'
-  },
-  {
-    id: '7',
-    title: 'Mobile App - No Image',
-    description: 'A cross-platform mobile application built with React Native for fitness tracking and workout planning.',
-    techStacks: [
-      { name: 'React Native', color: '#61dafb', icon: '📱' },
-      { name: 'Expo', color: 'rgb(162, 188, 235)', icon: '⚡' },
-      { name: 'Firebase', color: 'rgb(240, 227, 46)', icon: '🔥' }
-    ],
-    links: [
-      { type: 'demo', url: 'https://alisafari-it.github.io/project-card/', label: 'Demo' }
-    ],
-    repo: {
-      type: 'repo',
-      url: 'https://github.com/user/fitness-app',
-      label: 'Repository',
-      icon: '🐙'
-    },
-    status: 'draft',
-    isFeatured: false,
-    priority: 'medium',
-    category: 'mobile',
-    progress: 25,
-    tags: [
-      { name: 'Mobile' },
-      { name: 'Fitness' },
-      { name: 'React Native' },
-      { name: 'Cross-platform' }
-    ],
-    startDate: '2024-01-20',
-    dueDate: '2024-05-15',
-    budget: {
-      amount: 8000,
-      currencyCode: 'USD',
-      currencySymbol: '$'
-    },
-    isPublic: true,
-    createdBy: 'Maria Garcia',
-    updatedBy: 'Carlos Rodriguez',
-    lastUpdated: '2024-01-22'
-  },
-  {
-    id: '8',
-    title: 'DevOps Pipeline',
-    description: 'Automated CI/CD pipeline with Docker, Kubernetes, and monitoring tools for scalable deployment.',
-    image: {
-      src: 'https://picsum.photos/400/200?random=8',
-      alt: 'DevOps Pipeline'
-    },
-    techStacks: [
-      { name: 'Docker', color: '#2496ED', icon: '🐳' },
-      { name: 'Kubernetes', color: '#326CE5', icon: '☸️' },
-      { name: 'Jenkins', color: '#D24939', icon: '🔧' },
-      { name: 'Prometheus', color: '#E6522C', icon: '📊' }
-    ],
-    links: [
-      { type: 'demo', url: 'https://alisafari-it.github.io/project-card/', label: 'Demo' },
-      { type: 'documentation', url: 'https://docs.devops.com', label: 'Documentation' }
-    ],
-    repo: {
-      type: 'repo',
-      url: 'https://github.com/user/devops-pipeline',
-      label: 'Repository',
-      icon: '🐙'
-    },
-    status: 'active',
-    isFeatured: true,
-    priority: 'high',
-    category: 'devops',
-    progress: 75,
-    tags: [
-      { name: 'DevOps' },
-      { name: 'CI/CD' },
-      { name: 'Docker' },
-      { name: 'Kubernetes' }
-    ],
-    startDate: '2024-01-01',
-    dueDate: '2024-03-30',
-    budget: {
-      amount: 15000,
-      currencyCode: 'USD',
-      currencySymbol: '$'
-    },
-    isPublic: true,
-    createdBy: 'DevOps Team',
-    updatedBy: 'DevOps Team',
-    lastUpdated: '2024-01-28'
-  }
-];
-
-function App() {
-  const [theme, setTheme] = useState<'light' | 'dark'>(() => {
-    const stored = typeof window !== 'undefined' ? localStorage.getItem('asafarim_pc_theme') : null;
-    return (stored === 'dark' || stored === 'light') ? (stored as 'light' | 'dark') : 'light';
-  });
+function HomePage() {
+  const { resolvedMode } = useTheme();
+  const theme = resolvedMode === 'dark' ? 'dark' : 'light';
   const [showLoadingDemo, setShowLoadingDemo] = useState(false);
-  const [route, setRoute] = useState<string>('home');
 
-  // Keep CSS variables in sync with theme for ProjectCard
+  // Keep the lib's CSS custom properties in sync with the resolved theme
   useEffect(() => {
     try {
-      const root = document.documentElement;
-      if (theme === 'dark') {
-        root.setAttribute('data-theme', 'dark');
-      } else {
-        root.removeAttribute('data-theme');
-      }
-      localStorage.setItem('asafarim_pc_theme', theme);
-    } catch {}
-  }, [theme]);
-
-  const toggleTheme = () => {
-    setTheme(theme === 'light' ? 'dark' : 'light');
-  };
-
-  // persist theme across routes/reloads
-  useEffect(() => {
-    try {
-      localStorage.setItem('asafarim_pc_theme', theme);
+      applyProjectCardTheme(theme);
     } catch {}
   }, [theme]);
 
@@ -426,84 +26,8 @@ function App() {
     alert(`Clicked on: ${title}`);
   };
 
-  // Simple hash-based routing (no external deps)
-  // Supported routes: #/home, #/projects, #/improved, #/multiple
-  useEffect(() => {
-    const applyHash = () => {
-      const hash = window.location.hash.replace('#/', '').trim();
-      setRoute(hash || 'home');
-    };
-    applyHash();
-    window.addEventListener('hashchange', applyHash);
-    return () => window.removeEventListener('hashchange', applyHash);
-  }, []);
-
-  const navigate = (path: string) => {
-    window.location.hash = `/${path}`;
-  };
-  const isActive = (path: string) => route === path;
-
   return (
     <div className={`demo-container ${theme === 'dark' ? 'dark-theme' : ''}`}>
-      {/* Simple Navbar */}
-      <nav
-        style={{
-          display: 'flex',
-          gap: '0.75rem',
-          alignItems: 'center',
-          justifyContent: 'space-between',
-          padding: '0.75rem 1rem',
-          borderBottom: '1px solid #e2e8f0',
-          position: 'sticky',
-          top: 0,
-          background: theme === 'dark' ? '#0f172a' : '#ffffff',
-          zIndex: 10,
-        }}
-      >
-        <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
-          <strong>@asafarim/project-card</strong>
-          <span style={{ opacity: 0.6 }}>Demo</span>
-        </div>
-        <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap', alignItems: 'center' }}>
-          <button className={`nav-btn ${isActive('home') ? 'active' : ''}`} onClick={() => navigate('home')}>
-            Home
-          </button>
-          <button className={`nav-btn ${isActive('projects') ? 'active' : ''}`} onClick={() => navigate('projects')}>
-            ProjectsPage
-          </button>
-          <button className={`nav-btn ${isActive('improved') ? 'active' : ''}`} onClick={() => navigate('improved')}>
-            ImprovedProjectCardExample
-          </button>
-          <button className={`nav-btn ${isActive('multiple') ? 'active' : ''}`} onClick={() => navigate('multiple')}>
-            MultipleProjectsExample
-          </button>
-          <button className="nav-btn" onClick={toggleTheme} title={"Toggle " + (theme === 'dark' ? 'Light' : 'Dark')}>
-            {theme === 'dark' ? '🌙' : '🌞'}
-          </button>
-        </div>
-      </nav>
-
-      {/* Route Views */}
-      {route === 'projects' && (
-        <div style={{ paddingTop: '1rem' }}>
-          <ProjectsPage theme={theme} hideLocalToggle={true} />
-        </div>
-      )}
-
-      {route === 'improved' && (
-        <div style={{ paddingTop: '1rem' }}>
-          <ImprovedProjectCardExample theme={theme} hideLocalToggle={true} />
-        </div>
-      )}
-
-      {route === 'multiple' && (
-        <div style={{ paddingTop: '1rem' }}>
-          <MultipleProjectsExample theme={theme} hideLocalToggle={true} />
-        </div>
-      )}
-
-      {(route === 'home') && (
-        <>
       <div className="demo-header">
         <h1>@asafarim/project-card</h1>
         <p>A powerful and flexible React component for displaying project cards</p>
@@ -577,8 +101,10 @@ pnpm add @asafarim/project-card`}
       <div className="demo-section">
         <h2>📋 Basic Usage</h2>
         <p>Here's how easy it is to use the ProjectCard component:</p>
-        <DisplayCode
-          code={`import { ProjectCard } from '@asafarim/project-card';
+        <div className="howto-card__split">
+          <div className="howto-card__code">
+            <DisplayCode
+              code={`import { ProjectCard } from '@asafarim/project-card';
 
 <ProjectCard
   title="My Awesome Project"
@@ -594,19 +120,41 @@ pnpm add @asafarim/project-card`}
   currentTheme="light"
   onCardClick={() => console.log('Card clicked!')}
 />`}
-          language="jsx"
-          theme={theme}
-          title="Basic Usage Example"
-          showLineNumbers={true}
-          showCopyButton={true}
-        />
+              language="jsx"
+              theme={theme}
+              title="Basic Usage Example"
+              showLineNumbers={true}
+              showCopyButton={true}
+            />
+          </div>
+          <div className="howto-card__preview">
+            <div className="howto-card__preview-inner">
+              <ProjectCard
+                title="My Awesome Project"
+                description="A description of my project"
+                techStacks={[
+                  { name: 'React', color: '#61dafb', icon: '⚛️' },
+                  { name: 'TypeScript', color: '#3178c6', icon: '📘' }
+                ]}
+                links={[
+                  { type: 'demo', url: 'https://demo.com', label: 'Demo' },
+                  { type: 'repo', url: 'https://github.com/user/repo', label: 'Repository' }
+                ]}
+                currentTheme={theme}
+                onCardClick={() => handleCardClick('My Awesome Project')}
+              />
+            </div>
+          </div>
+        </div>
       </div>
 
       <div className="demo-section">
         <h2>🚀 Advanced Features</h2>
         <p>Showcase all the powerful features with comprehensive project data:</p>
-        <DisplayCode
-          code={`import { ProjectCard } from '@asafarim/project-card';
+        <div className="howto-card__split">
+          <div className="howto-card__code">
+            <DisplayCode
+              code={`import { ProjectCard } from '@asafarim/project-card';
 
 <ProjectCard
   id="1"
@@ -626,10 +174,10 @@ pnpm add @asafarim/project-card`}
     { type: 'repo', url: 'https://github.com/user/ecommerce' }
   ]}
   status="active"
-  featured={true}
-  priority="High"
+  isFeatured={true}
+  priority="high"
   progress={85}
-  tags={['E-commerce', 'Full-stack', 'React', 'Node.js']}
+  tags={[{ name: 'E-commerce' }, { name: 'React' }]}
   startDate="2024-01-15"
   dueDate="2024-03-15"
   budget={15000}
@@ -639,12 +187,25 @@ pnpm add @asafarim/project-card`}
   maxDescriptionLength={150}
   onCardClick={() => console.log('Project clicked!')}
 />`}
-          language="jsx"
-          theme={theme}
-          title="Advanced Usage Example"
-          showLineNumbers={true}
-          showCopyButton={true}
-        />
+              language="jsx"
+              theme={theme}
+              title="Advanced Usage Example"
+              showLineNumbers={true}
+              showCopyButton={true}
+            />
+          </div>
+          <div className="howto-card__preview">
+            <div className="howto-card__preview-inner">
+              <ProjectCard
+                {...sampleProjects[0]}
+                currentTheme={theme}
+                showTechStackIcons={true}
+                maxDescriptionLength={150}
+                onCardClick={() => handleCardClick(sampleProjects[0].title)}
+              />
+            </div>
+          </div>
+        </div>
       </div>
 
       <div className="demo-section">
@@ -856,7 +417,6 @@ const projectCards = mapProjects(sortedProjects);
   title="Project Title"
   description="Project description"
   image="https://example.com/image.jpg"
-  imageAlt="Alternative text for image"
   
   // Tech stack with colors and icons
   techStacks={[
@@ -873,7 +433,7 @@ const projectCards = mapProjects(sortedProjects);
   
   // Theming and appearance
   currentTheme="dark"
-  featured={true}
+  isFeatured={true}
   showTechStackIcons={true}
   
   // Behavior
@@ -881,7 +441,7 @@ const projectCards = mapProjects(sortedProjects);
   maxDescriptionLength={200}
   
   // Status and metadata
-  status="active" // 'active' | 'archived' | 'in-progress'
+  status="active"
   lastUpdated="2024-01-15"
   
   // Loading state
@@ -945,14 +505,27 @@ const projectProps: ProjectCardProps = {
         />
       </div>
 
-      <div style={{ textAlign: 'center', margin: '4rem 0 2rem' }}>
+      <footer className="footer" style={{ textAlign: 'center', margin: '4rem 0 2rem' }}>
         <p style={{ fontSize: '1.1rem', color: theme === 'dark' ? '#a0aec0' : '#4a5568' }}>
           Built with ❤️ using the package <a href="https://github.com/AliSafari-IT/project-card">@asafarim/project-card</a> by Ali Safari
         </p>
-      </div>
-        </>
-      )}
+      </footer>
     </div>
+  );
+}
+
+function App() {
+  return (
+    <>
+      <SiteNav />
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/how-to" element={<HowToPage />} />
+        <Route path="/roadmap" element={<RoadmapPage />} />
+        <Route path="/examples" element={<ExamplesPage />} />
+        <Route path="*" element={<HomePage />} />
+      </Routes>
+    </>
   );
 }
 

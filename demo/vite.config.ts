@@ -7,7 +7,7 @@ export default defineConfig(({ mode }) => {
 
   return {
     plugins: [react()],
-    base: '/project-card/',  // Match the repository name for GitHub Pages
+    base: process.env.VITE_BASE_PATH || '/project-card/',  // Match the repository name for GitHub Pages
     server: {
       port: 3008,
       open: true
@@ -18,7 +18,8 @@ export default defineConfig(({ mode }) => {
     },
     resolve: {
       alias: {
-        '@': resolve(__dirname, './src')
+        '@': resolve(__dirname, './src'),
+        '@asafarim/project-card': resolve(__dirname, '..')
       }
     },
   };

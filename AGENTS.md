@@ -3,8 +3,8 @@
 React + TypeScript component: a rich project card (title, image, description,
 tech stack, links, status, progress, tags, budget) with a CSS-variable theme
 system and DB-model mapping helpers. pnpm workspace: library at root, Vite demo
-app in `demo/` (consumes the lib via `link:..`, plus `@asafarim/display-code`
-and `@asafarim/shared`).
+app in `demo/` (consumes the lib via `link:..`, plus `@asafarim/display-code`,
+`@asafarim/shared`, `@asafarim/react-themes`, `react-router-dom`).
 
 ## Layout
 
@@ -12,8 +12,8 @@ and `@asafarim/shared`).
   flat `components/` dir (not per-component folders)
 - `src/types/index.ts` — exported types (`ProjectCardProps`, `TechStackItem`,
   `ProjectLink`, `ProjectTag`, `RelatedProject`, `ProjectStatus`,
-  `ProjectCategory`, `ProjectPriority`, `Theme`, `ProjectImage`,
-  `ProjectBudget`)
+  `ProjectCategory`, `ProjectPriority`, `Theme`, `ProjectImage`;
+  `ProjectBudget` is defined here but NOT re-exported from `src/index.ts`)
 - `src/types/css-modules.d.ts` — CSS-module declarations required by
   rollup-plugin-typescript2; keep it
 - `src/utils/projectMapper.ts` — DB-model helpers (`mapProject`, `mapProjects`,
@@ -22,9 +22,14 @@ and `@asafarim/shared`).
   `createProjectCardThemeContext`, `PROJECT_CARD_THEME_VARIABLES` — `--pc-*`
   custom properties)
 - `src/index.ts` — public API barrel
-- `demo/` — Vite + React 18 app; `base` is hardcoded to `/project-card/` in
-  `vite.config.ts` for GitHub Pages; dev server on port 3008 (`predev` runs
-  `npx kill-port 3008`)
+- `demo/` — Vite + React 18 app with `react-router-dom` and
+  `@asafarim/react-themes` (`ThemeProvider` + `ThemeToggle` in `SiteNav.tsx`);
+  `base` is `VITE_BASE_PATH || '/project-card/'` in `vite.config.ts` for
+  GitHub Pages; dev server on port 3008 (`predev` runs `npx kill-port 3008`).
+  Pages: `/` Home, `/how-to` (`HowToPage.tsx`), `/roadmap` (`RoadmapPage.tsx`),
+  `/examples` (`ExamplesPage.tsx`); shared data in `mockData.ts`. Theme bridge:
+  `applyProjectCardTheme(resolvedMode)` in `App.tsx` syncs the lib's
+  `data-theme` CSS vars with react-themes
 - `demo-setup.bat` / `demo-setup.sh` — one-shot build + install + dev helpers
   (npm-based, not pnpm)
 - `THEME_SYSTEM.md`, `DEMO_SUMMARY.md` — supplementary docs
@@ -35,7 +40,7 @@ and `@asafarim/shared`).
 - `pnpm run build` — `rollup -c` → `dist/index.js` (CJS) + `dist/index.esm.js`
   + d.ts + sourcemaps (postcss modules injected into JS, not extracted; terser)
 - `pnpm run watch` — `rollup -c -w`
-- `cd demo && pnpm build` — `vite build` only (no tsc step)
+- `cd demo && pnpm build` — `tsc && vite build`
 - `cd demo && pnpm dev` — vite dev server on :3008
 - `pnpm run demo` — builds lib, builds demo, starts dev server
 - No dedicated typecheck/test/lint scripts — `pnpm exec tsc --noEmit` or rely on
@@ -66,7 +71,8 @@ demo Pages deploy:
 4. Commit → push `main`
 5. `.github/workflows/static_demo.yml` deploys `demo/dist` to GitHub Pages via
    `actions/deploy-pages` — but **only when `demo/**` changes on `main`** (or
-   via `workflow_dispatch`)
+   via `workflow_dispatch`); it copies `index.html` → `404.html` so
+   BrowserRouter routes survive a refresh on Pages
 6. Manual Pages deploy: `pnpm run deploy` (`predeploy` builds lib + demo, then
    `gh-pages -d demo/dist` pushes the `gh-pages` branch)
 7. Optionally `gh release create v{x.y.z} -R AliSafari-IT/project-card --latest`
@@ -82,8 +88,9 @@ demo Pages deploy:
 - **README prop table is stale**: it documents `techStack`, `featured`, and a
   required `image`, but the source uses `techStacks`, `isFeatured`, and an
   optional `image` (`string | ProjectImage`) — trust `src/types/index.ts`
-- Lib-only pushes to `main` won't redeploy the Pages demo (path filter is
-  `demo/**`) — use `workflow_dispatch` or `pnpm run deploy`
+- Lib-only pushes to `main` won't redeploy the Pages demo (path filters are
+  `demo/**` and `.github/workflows/static_demo.yml`) — use `workflow_dispatch`
+  or `pnpm run deploy`
 - `demo-setup.bat`/`.sh` use `npm`, not pnpm — running them creates a
   `package-lock.json` alongside `pnpm-lock.yaml`; prefer the pnpm scripts
 - Demo has its own `demo/pnpm-lock.yaml` and a `link:..` dep on the lib —

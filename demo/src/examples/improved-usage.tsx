@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { ProjectCard, ProjectCardProps } from '@asafarim/project-card';
 
 // Example of using the improved ProjectCard with database properties

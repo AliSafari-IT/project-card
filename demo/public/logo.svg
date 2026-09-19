@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="4 4 40 40">
+  <defs>
+    <linearGradient id="pc-back" x1="6" y1="4" x2="40" y2="42" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#22d3ee" />
+      <stop offset="1" stop-color="#6366f1" />
+    </linearGradient>
+    <linearGradient id="pc-mid" x1="10" y1="8" x2="42" y2="44" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#6366f1" />
+      <stop offset="1" stop-color="#a855f7" />
+    </linearGradient>
+    <linearGradient id="pc-front" x1="14" y1="10" x2="36" y2="44" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#8b5cf6" />
+      <stop offset="1" stop-color="#ec4899" />
+    </linearGradient>
+  </defs>
+  <!-- back card, fanned left -->
+  <rect x="13" y="8" width="22" height="30" rx="5" transform="rotate(-14 24 24)" fill="url(#pc-back)" opacity="0.55" />
+  <!-- middle card, fanned right -->
+  <rect x="14" y="10" width="22" height="30" rx="5" transform="rotate(8 24 24)" fill="url(#pc-mid)" opacity="0.8" />
+  <!-- front card -->
+  <rect x="13" y="12" width="22" height="30" rx="5" fill="url(#pc-front)" stroke="#ffffff" stroke-opacity="0.35" stroke-width="1" />
+  <!-- image block -->
+  <rect x="16.5" y="16" width="15" height="9" rx="2" fill="#ffffff" opacity="0.92" />
+  <!-- title + description lines -->
+  <rect x="16.5" y="28" width="11" height="2" rx="1" fill="#ffffff" opacity="0.85" />
+  <rect x="16.5" y="31.5" width="15" height="1.6" rx="0.8" fill="#ffffff" opacity="0.55" />
+  <!-- tag dots -->
+  <circle cx="18.5" cy="36.5" r="1.6" fill="#fde047" />
+  <circle cx="24" cy="36.5" r="1.6" fill="#ffffff" opacity="0.7" />
+  <circle cx="29.5" cy="36.5" r="1.6" fill="#ffffff" opacity="0.45" />
+</svg>

@@ -22,32 +22,14 @@ export function SiteNav() {
   return (
     <nav className={`site-nav${isDark ? " site-nav--dark" : ""}`}>
       <Link to="/" className="site-nav__brand" aria-label="Home">
-        <svg
+        <img
+          src={`${import.meta.env.BASE_URL}logo.svg`}
           className="site-nav__logo"
-          viewBox="0 0 24 24"
-          width="32"
-          height="32"
+          width="60"
+          height="60"
+          alt=""
           aria-hidden="true"
-        >
-          <defs>
-            <linearGradient id="pc-logo-bg" x1="0" y1="0" x2="24" y2="24" gradientUnits="userSpaceOnUse">
-              <stop offset="0" stopColor="#3b82f6" />
-              <stop offset="1" stopColor="#8b5cf6" />
-            </linearGradient>
-          </defs>
-          {/* Card body */}
-          <rect width="24" height="24" rx="5" fill="url(#pc-logo-bg)" />
-          {/* Card image area */}
-          <rect x="4" y="4" width="16" height="7" rx="1.5" fill="#dbeafe" opacity="0.95" />
-          {/* Title line */}
-          <rect x="4" y="13" width="10" height="1.8" rx="0.9" fill="#bfdbfe" opacity="0.95" />
-          {/* Description line */}
-          <rect x="4" y="16" width="14" height="1.4" rx="0.7" fill="#bfdbfe" opacity="0.7" />
-          {/* Tag chips */}
-          <rect x="4" y="19" width="4" height="1.8" rx="0.9" fill="#fbbf24" />
-          <rect x="9.5" y="19" width="4" height="1.8" rx="0.9" fill="#f472b6" />
-          <rect x="15" y="19" width="4" height="1.8" rx="0.9" fill="#34d399" />
-        </svg>
+        />
         <span className="site-nav__name">@asafarim/project-card</span>
       </Link>
 
